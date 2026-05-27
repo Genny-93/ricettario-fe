@@ -1,0 +1,108 @@
+form {
+    display: flex;
+    /* Trasforma il form in un contenitore flessibile */
+    flex-direction: column;
+    /* Impila gli elementi (i form-group e il bottone) in verticale */
+    gap: 20px;
+    /* Crea automaticamente uno spazio di 20px tra ogni elemento */
+}
+
+.containerLogin {
+
+    position: absolute; /* Rende l'elemento indipendente dal resto della pagina */
+    top: 50%; /* Sposta il lato superiore esattamente a metà schermo */
+    left: 50%; /* Sposta il lato sinistro esattamente a metà schermo */
+    width: 100%;
+    max-width: 400px;
+    transform: translate(-50%, -50%); /* Sposta il riquadro indietro della metà della sua larghezza e altezza, centrandolo perfettamente */
+    padding: 30px;
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgb(32, 36, 40);
+}
+
+.form-group {
+    padding: 10px;
+}
+
+h1 {
+    text-align: center;
+    /* Centra il testo del titolo */
+    color: #333333;
+    /* Un grigio scuro, più elegante del nero assoluto */
+    margin-bottom: 25px;
+    /* Crea spazio tra il titolo e il primo campo del form */
+}
+
+label {
+    display: block;
+    /* Fa in modo che la label occupi tutta la riga, spingendo l'input a capo */
+    margin-bottom: 8px;
+    /* Piccolo spazio tra la scritta e il rettangolo di input */
+    color: #555555;
+    /* Colore del testo della label */
+    font-size: 14px;
+    /* Dimensione del carattere */
+    font-weight: bold;
+    /* Rende il testo in grassetto */
+}
+
+input {
+    width: 100%;
+    /* Fa allargare la casella di testo fino ai bordi del contenitore */
+    padding: 12px;
+    /* Rende la casella di testo più alta e spaziosa all'interno */
+    border: 1px solid #cccccc;
+    /* Un bordo grigio chiaro */
+    border-radius: 5px;
+    /* Arrotonda leggermente anche gli input */
+    box-sizing: border-box;
+    /* Regola fondamentale: fa sì che il padding non "sbordi" fuori dal 100% della larghezza */
+    font-size: 14px;
+    /* Dimensione del testo digitato all'interno */
+}
+
+button {
+    width: 100%;
+    /* Il pulsante occupa tutta la larghezza */
+    padding: 12px;
+    /* Altezza del pulsante */
+    background-color: #007bff;
+    /* Colore blu principale */
+    color: white;
+    /* Testo del pulsante bianco */
+    border: none;
+    /* Rimuove i bordi di default */
+    border-radius: 5px;
+    /* Arrotonda gli angoli */
+    font-size: 16px;
+    /* Testo leggermente più grande */
+    font-weight: bold;
+    /* Testo in grassetto */
+    cursor: pointer;
+    /* Cambia l'icona del mouse nella "manina" quando ci si passa sopra */
+    transition: background-color 0.3s ease;
+    /* Crea un'animazione fluida quando cambia colore */
+}
+
+.form-group {
+    margin-bottom: 20px;
+    /* Crea spazio tra il campo email e il campo password */
+}
+
+/* Effetto quando si passa sopra il pulsante con il mouse (Hover) */
+button:hover {
+    background-color: #0056b3;
+    /* Diventa un blu più scuro */
+}
+
+/* Effetto per il pulsante disabilitato (quando il form di Angular non è valido) */
+button:disabled {
+    background-color: #d6d6d6;
+    /* Diventa grigio */
+    color: #888888;
+    /* Testo grigio scuro */
+    cursor: not-allowed;
+    /* Mostra il simbolo di divieto col mouse */
+}
