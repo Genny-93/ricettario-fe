@@ -1,1 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
+:root {
+  --color-bg: #fffdf7;
+  --color-navbar: #344e41;
+  --color-footer: #25372d;
+
+  --color-primary: #d6452f;
+  --color-primary-hover: #b83726;
+  --color-secondary: #a3b18a;
+  --color-secondary-hover: #8fa079;
+
+  --color-card: #faf3e0;
+  --color-surface: #ffffff;
+  --color-border: #d8cbb3;
+
+  --color-text: #252422;
+  --color-text-muted: #6b625a;
+  --color-text-inverse: #ffffff;
+
+  --color-badge: #f2c14e;
+  --color-success: #588157;
+  --color-error: #c0392b;
+  --color-warning: #f2c14e;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: Arial, sans-serif;
+}
