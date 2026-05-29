@@ -1,8 +1,8 @@
 export interface LoginRequest {
 
-    username: String;
+    username: string;
 
-    password: String;
+    password: string;
 
 
 }

@@ -26,7 +26,7 @@ export class Login implements OnDestroy {
 
 
   accedi() {
-    console.log("Dati inviati", this.loginRequest);
+    console.log("Dati inviati", this.loginRequest.username);
     this.sub = this.authenticationService.login(this.loginRequest).subscribe({
       next: () => {
         console.log('Login completato con successo. Cookie acquisito dal browser.');

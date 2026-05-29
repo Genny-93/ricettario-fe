@@ -19,4 +19,12 @@ export class Authentication {
     });
   }
 
+  logout(): Observable<String> {
+    return this.http.post(`${this.baseUrl}/auth/logout`, {}, {
+      withCredentials: true,
+      responseType: 'text'
+    });
+
+  }
+
 }
