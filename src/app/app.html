@@ -1,43 +1,7 @@
-<header>
-  <div class="box-header">
-    <div class="header-left">
-      
-      <button type="button">Menù</button>
-      
-      <div class="logo">
-        <p>LOGO</p>
-      </div>
-
-    </div>
-
-    <div class="header-center">
-      
-      <input class="search-input" type="search" placeholder="Cerca...">
-      
-      <button type="button" class="button-create-recipe">
-        + Crea nuova Ricetta
-      </button>
-    </div>
-
-    <div class="header-right"> <button (click)="logout()">Utente</button>
-    </div>
-
-  </div>
-
-  <nav class="category-nav" aria-label="Categorie ricette">
-  <a href="#">Antipasti</a>
-  <a href="#">Primi</a>
-  <a href="#">Secondi</a>
-  <a href="#">Dolci</a>
-  <a href="#">Altro...</a>
-</nav>
-
-</header>
+<app-header></app-header>
 
 <main>
-
   <router-outlet></router-outlet>
 </main>
 
-
-<footer></footer>
+<app-footer></app-footer>

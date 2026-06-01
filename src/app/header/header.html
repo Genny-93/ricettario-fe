@@ -1,0 +1,81 @@
+<header class="site-header">
+  <div class="box-header">
+    <div class="header-left">
+      <button mat-icon-button class="menu-button" type="button" aria-label="Apri menu di navigazione"
+        [matMenuTriggerFor]="mainMenu">
+        <mat-icon>menu</mat-icon>
+      </button>
+
+      <mat-menu #mainMenu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>home</mat-icon>
+          <span>Home</span>
+        </button>
+
+        <button mat-menu-item>
+          <mat-icon>restaurant_menu</mat-icon>
+          <span>Le mie ricette</span>
+        </button>
+
+        <button mat-menu-item>
+          <mat-icon>favorite</mat-icon>
+          <span>Preferiti</span>
+        </button>
+
+        <button mat-menu-item>
+          <mat-icon>settings</mat-icon>
+          <span>Impostazioni</span>
+        </button>
+      </mat-menu>
+
+      <div class="logo" aria-label="Ricettario">
+        <mat-icon class="logo-icon">local_dining</mat-icon>
+        <span class="logo-text">RICETTARIO</span>
+      </div>
+    </div>
+
+    <div class="header-center">
+      <label class="search-container" aria-label="Cerca ricette">
+        <mat-icon class="search-icon">search</mat-icon>
+        <input class="search-input" type="search" placeholder="Cerca ricette, ingredienti..." />
+      </label>
+
+      <button type="button" class="button-create-recipe">
+        <mat-icon>add</mat-icon>
+        <span>Crea nuova ricetta</span>
+      </button>
+    </div>
+
+    <div class="header-right">
+      <button mat-icon-button class="account-button" type="button" aria-label="Apri menu utente"
+        [matMenuTriggerFor]="accountMenu">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+
+      <mat-menu #accountMenu="matMenu">
+        <button mat-menu-item>
+          <mat-icon>list</mat-icon>
+          <span>Lista ricette</span>
+        </button>
+
+        <button mat-menu-item>
+          <mat-icon>favorite</mat-icon>
+          <span>Lista preferiti</span>
+        </button>
+
+        <button mat-menu-item (click)="logout()">
+          <mat-icon>logout</mat-icon>
+          <span>Logout</span>
+        </button>
+      </mat-menu>
+    </div>
+  </div>
+
+  <nav class="category-nav" aria-label="Categorie ricette">
+    <a href="#">Antipasti</a>
+    <a href="#">Primi</a>
+    <a href="#">Secondi</a>
+    <a href="#">Dolci</a>
+    <a href="#">Altro...</a>
+  </nav>
+</header>
