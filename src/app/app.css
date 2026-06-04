@@ -1,3 +1,27 @@
 main {
     min-height: 80vh;
 }
+.sidebar-container {
+  height: 100dvh;
+}
+
+.app-content {
+  height: 100dvh;
+  overflow-y: auto;
+}
+
+.sidebar-container.sidebar-open .app-content {
+  overflow: hidden;
+}
+
+.app-sidenav {
+  width: 300px;
+  max-width: 85vw;
+  height: 100dvh;
+  overflow-y: auto;
+}
+
+mat-sidenav {
+  border-radius: 0 10px 10px 0 ;
+  background-color: var(--color-navbar);   /* Sfondo scuro coerente con la navbar */
+}

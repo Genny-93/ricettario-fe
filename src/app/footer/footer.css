@@ -1,142 +1,157 @@
+/* CONTENITORE PRINCIPALE (FOOTER)*/
 .site-footer {
     background-color: var(--color-footer);
     color: var(--color-text-inverse);
     margin-top: 500px;
 }
 
+/* GRIGLIA MACRO-LAYOUT (AREA PRINCIPALE)*/
 .footer-main {
     display: grid;
+    /* Suddivisione in 5 colonne */
     grid-template-columns: 1fr 0.5fr 0.5fr 0.5fr 1.5fr;
     gap: 20px;
+    /* Spaziatura interna: 48px sopra, 40px ai lati, 36px sotto */
     padding: 48px 40px 36px;
 }
 
+/* SEZIONE BRAND E LOGO (PERSONALIZZATO) */
 .footer-brand {
+    /* Limita la larghezza massima del blocco brand */
     max-width: 280px;
 }
 
 .footer-logo {
-    width: 78px;
-    height: 78px;
-    display: grid;
-    place-items: center;
-    position: relative;
-    border-radius: 22px 22px 30px 12px;
-    background-color: var(--color-primary);
-    color: var(--color-text-inverse);
-    box-shadow: 0 10px 24px rgb(0 0 0 / 18%);
+    /* Dimensioni fisse del contenitore del logo */
+    width: 200px;
+    height: 200px;
+   
 }
 
-.footer-logo mat-icon {
-    position: absolute;
-    top: 10px;
-    right: 9px;
-    font-size: 24px;
-    width: 24px;
-    height: 24px;
-    opacity: 0.9;
-}
-
-.footer-logo span {
-    font-size: 42px;
-    font-weight: 900;
-    line-height: 1;
-}
-
-.footer-brand-name {
-    margin: 16px 0 8px;
-    font-size: 22px;
-    font-weight: 900;
-    letter-spacing: 0;
+.footer-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Mantiene le proporzioni del logo senza distorcerlo */
+    display: block;
 }
 
 .footer-brand-text {
+    /* Rimuove i margini di default del paragrafo */
     margin: 0;
-    color: rgb(255 255 255 / 78%);
+    /* opacità al 78% per creare gerarchia visiva (meno evidente del titolo) */
+    opacity: 78%;
+    /* Interlinea per una migliore leggibilità del testo descrittivo */
     line-height: 1.5;
 }
 
+/* COLONNE DEI LINK DI NAVIGAZIONE */
+
 .footer-column,
 .footer-newsletter {
+    /* Layout verticale flessibile per i link o gli elementi della newsletter */
     display: flex;
     flex-direction: column;
+    /* Spazio uniforme di 14px tra gli elementi figli */
     gap: 14px;
 }
 
 .footer-column h3,
 .footer-newsletter h3 {
+    /* Gestione dei margini dei titoli delle colonne */
     margin: 0 0 10px;
+    /* Colore secondario d'accento per differenziare i titoli delle sezioni */
     color: var(--color-secondary);
     font-size: 18px;
     font-weight: 800;
 }
 
 .footer-column a {
-    display: inline-flex;
+    /* Allinea verticalmente l'icona e il testo all'interno del link */
+    display: flex;
     align-items: center;
+    /* Distanza tra l'eventuale icona e il testo del link */
     gap: 9px;
-    color: rgb(255 255 255 / 82%);
+    /* Colore bianco semitrasparente (80%) di base per i link */
+    color: var(--color-text-inverse);
+    opacity: 80%;
+    /* Rimuove la sottolineatura nativa dei link */
     text-decoration: none;
     font-weight: 600;
 }
 
 .footer-column a:hover,
 .footer-bottom a:hover {
+    /* Cambia il colore del link al passaggio del mouse utilizzando la variabile badge */
     color: var(--color-badge);
 }
 
 .footer-column mat-icon {
+    /* Dimensionamento standardizzato per le icone all'interno dei link */
     font-size: 20px;
     width: 20px;
     height: 20px;
 }
 
+/* SEZIONE NEWSLETTER E FORM DI ISCRIZIONE */
 .footer-newsletter p {
     margin: 0;
-    color: rgb(255 255 255 / 78%);
+    color: var(--color-text-inverse);
+    opacity: 80%;
     line-height: 1.5;
 }
 
 .newsletter-form {
+    /* Disposizione orizzontale di input e pulsante */
     display: flex;
     gap: 10px;
     margin-top: 4px;
 }
 
 .newsletter-input {
+    /* Previene anomalie di ridimensionamento all'interno di flexbox per elementi input */
     min-width: 0;
+    /* Permette al campo di espandersi occupando tutto lo spazio rimasto libero */
     flex: 1;
     height: 46px;
+    /* Allineamento interno per icona e tag input */
     display: flex;
     align-items: center;
     gap: 10px;
     padding: 0 14px;
-    border: 1px solid rgb(255 255 255 / 18%);
     border-radius: 8px;
+    /* Colore di sfondo del campo tramite variabile */
     background-color: var(--color-surface);
+    /* Garantisce che padding e bordi siano calcolati all'interno dei 46px di altezza */
     box-sizing: border-box;
 }
 
 .newsletter-input mat-icon {
+    /* Colore attenuato per l'icona interna al campo di testo */
     color: var(--color-text-muted);
 }
 
 .newsletter-input input {
+    /* L'input nativo occupa tutto lo spazio del suo finto contenitore (.newsletter-input) */
     width: 100%;
     min-width: 0;
+    /* Rimuove i bordi e gli stili di focus nativi del browser */
     border: none;
     outline: none;
+    /* Rende lo sfondo trasparente per mostrare quello del contenitore padre */
     background: transparent;
     color: var(--color-text);
+    /* Eredita lo stile del font (dimensione, famiglia) del resto della pagina */
     font: inherit;
 }
 
 .newsletter-input input::placeholder {
+    /* Stile personalizzato per il testo di esempio (placeholder) */
     color: var(--color-text-muted);
 }
 
 .newsletter-form button {
     height: 46px;
+    /* Allinea centralmente testo ed eventuale icona del pulsante */
     display: inline-flex;
     align-items: center;
     gap: 6px;
@@ -146,11 +161,14 @@
     background-color: var(--color-primary);
     color: var(--color-text-inverse);
     font-weight: 800;
+    /* Mostra la manina al passaggio del mouse */
     cursor: pointer;
+    /* Impedisce al testo del pulsante di spezzarsi su due righe */
     white-space: nowrap;
 }
 
 .newsletter-form button:hover {
+    /* Colore di sfondo alternativo al passaggio del mouse sul pulsante */
     background-color: var(--color-primary-hover);
 }
 
@@ -160,6 +178,7 @@
     height: 19px;
 }
 
+/* BOX INFORMATIVO GIORNALIERO (FOOTER DAILY) */
 .footer-daily {
     display: flex;
     align-items: center;
@@ -167,21 +186,26 @@
     margin-top: 6px;
     padding: 10px 12px;
     border-radius: 8px;
+    /* Colore di sfondo verdastro semitrasparente basato su codice RGB */
     background-color: rgb(163 177 138 / 18%);
     color: var(--color-text-inverse);
     font-weight: 600;
 }
 
 .footer-daily mat-icon {
+    /* Colore specifico per evidenziare l'icona del box informativo */
     color: var(--color-badge);
 }
 
+/*  BARRA INFERIORE (COPYRIGHT E LINK LEGALI) */
 .footer-bottom {
     display: flex;
     align-items: center;
+    /* Spinge il testo del copyright a sinistra e la navigazione legale a destra */
     justify-content: space-between;
     gap: 24px;
     padding: 20px 40px;
+    /* Linea di divisione superiore rispetto alla griglia principale */
     border-top: 1px solid rgb(255 255 255 / 14%);
     color: rgb(255 255 255 / 72%);
     font-size: 14px;
@@ -189,62 +213,83 @@
 
 .footer-bottom p {
     margin: 0;
+    /* Evita che il testo del copyright vada a capo su schermi normali */
     white-space: nowrap;
 }
 
 .footer-bottom nav {
     display: flex;
+    /* Permette ai link (Privacy, Cookie) di andare a capo se lo spazio si riduce */
     flex-wrap: wrap;
+    /* Allinea i link legali verso destra */
     justify-content: flex-end;
     gap: 14px;
 }
 
 .footer-bottom a {
     color: rgb(255 255 255 / 72%);
+    /* Sottolineatura esplicita per i link legali di tipo istituzionale */
     text-decoration: underline;
+    /* Distanzia la sottolineatura dal testo per migliorarne la leggibilità */
     text-underline-offset: 3px;
 }
 
+/* MEDIA QUERIES (DESIGN RESPONSIVO) */
+
+/* --- Schermi Medi (Tablet o Laptop piccoli - max 1100px) --- */
 @media (max-width: 1100px) {
     .footer-main {
+        /* Riduzione del layout a sole 3 colonne a causa dello spazio ridotto */
         grid-template-columns: 1.2fr 1fr 1fr;
     }
 
     .footer-newsletter {
+        /* Forza la sezione newsletter ad occupare 2 colonne di larghezza nella griglia */
         grid-column: span 2;
     }
 }
 
+/* --- Schermi Piccoli (Smartphone - max 760px) --- */
 @media (max-width: 760px) {
     .footer-main {
+        /* Trasforma la griglia principale in un'unica colonna verticale fissa */
         grid-template-columns: 1fr;
+        /* Aumenta lo spazio verticale tra i blocchi ormai sovrapposti */
         gap: 30px;
+        /* Riduce la spaziatura interna laterale per sfruttare lo schermo dei telefoni */
         padding: 40px 22px 30px;
     }
 
     .footer-newsletter {
+        /* Ripristina l'estensione automatica a colonna singola per la newsletter */
         grid-column: auto;
     }
 
     .newsletter-form {
+        /* Dispone l'input e il pulsante in verticale (uno sotto l'altro) invece che affiancati */
         flex-direction: column;
     }
 
     .newsletter-form button {
+        /* Centra il testo del pulsante che ora occupa tutta la larghezza disponibile */
         justify-content: center;
     }
 
     .footer-bottom {
+        /* Inverte l'allineamento orizzontale in verticale per la barra dei copyright */
         flex-direction: column;
+        /* Allinea tutti i testi a sinistra */
         align-items: flex-start;
         padding: 20px 22px;
     }
 
     .footer-bottom p {
+        /* Permette al copyright di andare a capo liberamente se lo schermo è molto stretto */
         white-space: normal;
     }
 
     .footer-bottom nav {
+        /* Forza i link legali ad allinearsi a sinistra invece che a destra */
         justify-content: flex-start;
     }
 }

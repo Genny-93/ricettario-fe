@@ -1,0 +1,85 @@
+.title {
+  color: var(--color-text-inverse);
+  font-size: 30px;
+  margin: 0;
+}
+
+.intestazione {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+
+/* Contenitore principale della lista di navigazione */
+.sidebar-list {
+  height: 100%;
+  /* Estensione per tutta l'altezza disponibile */
+  padding: 16px;
+  /* Spazio interno per distanziare gli elementi dai bordi */
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  /* Spaziatura verticale tra i vari link */
+  box-sizing: border-box;
+}
+
+/* Pulsante di chiusura della sidebar */
+.close-button {
+  color: var(--color-text-inverse);
+  /* Icona bianca per garantire contrasto sullo sfondo scuro */
+  cursor: pointer;
+  transition: color 0.2s ease-in-out;
+  background-color: var(--color-text-muted);
+}
+
+/* Effetto hover per il pulsante di chiusura */
+.close-button:hover {
+  color: var(--color-secondary);
+  /* Cambio colore al passaggio del mouse */
+}
+
+/* Singolo elemento di navigazione (link) */
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  /* Angoli smussati per un design moderno */
+  margin: 0;
+  /* Reset di eventuali margini di default di Material */
+  transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+/* Stato iniziale del testo e delle icone dentro i link */
+.sidebar-item .sidebar-icon,
+.sidebar-item .sidebar-text {
+  color: var(--color-text-inverse);
+  /* Testo e icone bianchi di default */
+}
+
+/* Effetto hover e focus sul link */
+.sidebar-item:hover {
+  background-color: var(--color-secondary);
+  /* Sfondo verde chiaro al passaggio del mouse */
+}
+
+/* Cambio colore del testo e dell'icona durante l'hover sul link */
+.sidebar-item:hover .sidebar-icon,
+.sidebar-item:hover .sidebar-text {
+  color: var(--color-text);
+  /* Il testo diventa scuro per contrastare con il verde chiaro */
+}
+
+/* Ottimizzazione spaziatura icona e testo (se necessario sovrascrivere il default) */
+.sidebar-icon {
+  margin-right: 16px;
+  /* Distanza tra l'icona e il testo adiacente */
+}
+
+.sidebar-text {
+  font-size: 1rem;
+  font-weight: 500;
+  /* Tratto medio per migliorare la leggibilità */
+}

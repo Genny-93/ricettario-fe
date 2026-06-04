@@ -1,32 +1,9 @@
 <header class="site-header">
   <div class="box-header">
     <div class="header-left">
-      <button mat-icon-button class="menu-button" type="button" aria-label="Apri menu di navigazione"
-        [matMenuTriggerFor]="mainMenu">
+      <button mat-icon-button class="menu-button" type="button" aria-label="Apri menu di navigazione" (click)="onMenuClick()">
         <mat-icon>menu</mat-icon>
       </button>
-
-      <mat-menu #mainMenu="matMenu">
-        <button mat-menu-item>
-          <mat-icon>home</mat-icon>
-          <span>Home</span>
-        </button>
-
-        <button mat-menu-item>
-          <mat-icon>restaurant_menu</mat-icon>
-          <span>Le mie ricette</span>
-        </button>
-
-        <button mat-menu-item>
-          <mat-icon>favorite</mat-icon>
-          <span>Preferiti</span>
-        </button>
-
-        <button mat-menu-item>
-          <mat-icon>settings</mat-icon>
-          <span>Impostazioni</span>
-        </button>
-      </mat-menu>
 
       <div class="logo" aria-label="Ricettario">
         <mat-icon class="logo-icon">local_dining</mat-icon>

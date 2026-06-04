@@ -1,199 +1,226 @@
+/*CONTENITORE PRINCIPALE (HEADER)*/
+
 .site-header {
-    position: sticky;
-    top: 0;
-    z-index: 1000;
-    color: var(--color-text-inverse);
-    box-shadow: 0 4px 18px rgb(37 55 45 / 18%);
+    position: sticky;                  /* Mantiene l'header fisso in alto durante lo scroll */
+    top: 0;                            /* Lo blocca precisamente al margine superiore dello schermo */
+    z-index: 1000;                     /* Lo mantiene sopra a tutti gli altri elementi della pagina */
+    color: var(--color-text-inverse);  /* Colore del testo contrastante (es. bianco su sfondo scuro) */
+    box-shadow: 0 4px 18px rgb(37 55 45 / 18%); /* Leggera ombra inferiore per dare profondità */
 }
 
 .box-header {
-    min-height: 96px;
-    display: grid;
+    min-height: 96px;                  /* Altezza minima dell'header principale */
+    display: grid;                     /* Attiva il layout a griglia */
+    /* Divide lo spazio in 3 colonne: 
+       sinistra (auto), centro (minimo 280px, massimo 700px), destra (auto) */
     grid-template-columns: auto minmax(280px, 700px) auto;
-    align-items: center;
-    gap: 24px;
-    padding: 0 32px;
-    background-color: var(--color-navbar);
+    gap: 24px;                         /* Spazio di 24px tra le tre macro-colonne */
+    padding: 0 10px;                   /* Spaziatura interna laterale (destra e sinistra) */
+    background-color: var(--color-navbar); /* Colore di sfondo della barra di navigazione */
 }
+
+/* MACRO-AREE (ALLINEAMENTI INTERNI) */
 
 .header-left,
 .header-center,
 .header-right {
-    display: flex;
-    align-items: center;
+    display: flex;                     /* Attiva Flexbox per allineare gli elementi interni */
+    align-items: center;               /* Allinea gli elementi interni verticalmente al centro */
 }
 
 .header-left {
-    justify-self: start;
-    gap: 18px;
+    justify-self: start;               /* Spinge l'intera area verso l'estrema sinistra della griglia */
+    gap: 18px;                         /* Spazio di 18px tra il menu button e il logo */
 }
 
 .header-center {
-    justify-self: center;
-    width: 100%;
-    gap: 18px;
+    justify-self: center;              /* Centra l'intera area di ricerca nella griglia */
+    width: 100%;                       /* Occupa tutta la larghezza della sua colonna (fino a 700px) */
+    gap: 18px;                         /* Spazio di 18px tra la barra di ricerca e il pulsante "Crea" */
 }
 
 .header-right {
-    justify-self: end;
+    justify-self: end;                 /* Spinge l'area del profilo verso l'estrema destra della griglia */
 }
+
+/* BOTTONI MENU DI NAVIGAZIONE E ACCOUNT (OTTIMIZZATI) */
 
 .menu-button,
 .account-button {
-    height: 60px;
-    width: 60px;
-    color: var(--color-text-inverse);
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    color: var(--color-text-inverse);
-    user-select: none;
-}
-
-.logo-icon {
-    font-size: 34px;
-    width: 34px;
-    height: 34px;
-}
-
-.logo-text {
-    font-size: 28px;
-    font-weight: 800;
-    letter-spacing: 0;
-}
-
-.search-container {
-    flex: 1;
-    min-width: 220px;
-    height: 46px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 0 18px;
-    border: 1px solid var(--color-border);
-    border-radius: 999px;
-    background-color: var(--color-bg);
-    box-sizing: border-box;
-}
-
-.search-icon {
-    color: var(--color-text-muted);
-    flex: 0 0 auto;
-}
-
-.search-input {
-    width: 100%;
-    min-width: 0;
-    border: none;
-    outline: none;
-    background: transparent;
-    color: var(--color-text);
-    font: inherit;
-}
-
-.search-input::placeholder {
-    color: var(--color-text-muted);
-}
-
-.button-create-recipe {
-    height: 46px;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    border: none;
-    border-radius: 999px;
-    padding: 0 22px;
-    background-color: var(--color-primary);
-    color: var(--color-text-inverse);
-    font-weight: 800;
-    white-space: nowrap;
-    cursor: pointer;
-    box-shadow: 0 3px 0 var(--color-primary-hover);
-}
-
-.button-create-recipe:hover {
-    background-color: var(--color-primary-hover);
+    width: 64px;                       /* Larghezza fissa del pulsante cliccabile */
+    height: 64px;                      /* Altezza fissa del pulsante cliccabile */
+    color: var(--color-text-inverse);  /* Colore dell'icona (ereditato dal testo) */
+    display: inline-flex;              /* Attiva il flexbox per il contenuto del pulsante */
+    align-items: center;               /* Centra l'icona mat-icon in verticale */
+    justify-content: center;           /* Centra l'icona mat-icon in orizzontale */
 }
 
 .menu-button mat-icon,
 .account-button mat-icon {
-    font-size: 30px;
-    width: 30px;
-    height: 30px;
-    line-height: 34px;
+    font-size: 40px;                   /* Ingrandisce il disegno reale dell'icona a 40px */
+    width: 40px;                       /* Ridimensiona il contenitore dell'icona per combaciare */
+    height: 40px;                      /* Ridimensiona il contenitore dell'icona per combaciare */
+    line-height: 1;                    /* Resetta l'interlinea nativa per evitare disallineamenti */
 }
 
+/* SEZIONE LOGO DEL RICETTARIO */
+
+.logo {
+    display: flex;                     /* Affianca l'icona del cibo e il testo */
+    align-items: center;               /* Li allinea perfettamente al centro in verticale */
+    gap: 10px;                         /* Distanza tra l'icona e la scritta "RICETTARIO" */
+    color: var(--color-text-inverse);  /* Colore del brand */
+    user-select: none;                 /* Impedisce all'utente di evidenziare il testo per sbaglio */
+}
+
+.logo-icon {
+    font-size: 50px;                   /* Dimensione dell'icona del logo */
+    width: 50px;                       /* Larghezza dell'icona del logo */
+    height: 50px;                      /* Altezza dell'icona del logo */
+}
+
+.logo-text {
+    font-size: 28px;                   /* Dimensione del testo del brand */
+    font-weight: 800;                  /* Rende il testo molto in grassetto (spesso) */
+    letter-spacing: 0;                 /* Resetta la spaziatura tra le lettere */
+}
+
+/* BARRA DI RICERCA CENTRALIZZATA */
+
+.search-container {
+    flex: 1;                           /* Permette alla barra di espandersi e occupare lo spazio libero */
+    min-width: 220px;                  /* Impedisce alla barra di rimpicciolirsi oltre i 220px */
+    height: 46px;                      /* Altezza fissa della barra di ricerca */
+    display: flex;                     /* Allinea icona della lente e campo di testo */
+    align-items: center;               /* Allineamento verticale centrale */
+    gap: 10px;                         /* Spazio tra la lente d'ingrandimento e l'input */
+    padding: 0 18px;                   /* Spaziatura interna ai lati della barra */
+    border: 1px solid var(--color-border); /* Bordo di separazione */
+    border-radius: 999px;              /* Rende la barra totalmente arrotondata (a pillola) */
+    background-color: var(--color-bg); /* Colore di sfondo interno del campo */
+    box-sizing: border-box;            /* Garantisce che bordi e padding non superino i 46px di altezza */
+}
+
+.search-icon {
+    color: var(--color-text-muted);    /* Colore opaco/grigiastro per la lente di ricerca */
+    flex: 0 0 auto;                    /* Impedisce all'icona della lente di deformarsi o rimpicciolirsi */
+}
+
+.search-input {
+    width: 100%;                       /* L'input nativo occupa tutto lo spazio interno rimasto */
+    min-width: 0;                      /* Evita che l'input nativo rompa la larghezza del flex padre */
+    border: none;                      /* Rimuove il bordo standard dell'input HTML */
+    outline: none;                     /* Rimuove l'alone di focus blu/nero del browser */
+    background: transparent;           /* Rende lo sfondo trasparente per mostrare quello del container */
+    color: var(--color-text);          /* Colore del testo digitato dall'utente */
+    font: inherit;                     /* Eredita la famiglia dei font globale */
+}
+
+.search-input::placeholder {
+    color: var(--color-text-muted);    /* Colore del testo di esempio ("Cerca ricette...") */
+}
+
+/* BOTTONE "CREA NUOVA RICETTA" */
+
+.button-create-recipe {
+    height: 46px;                      /* Stessa altezza della barra di ricerca per simmetria */
+    display: inline-flex;              /* Allinea l'icona "+" e il testo sul pulsante */
+    align-items: center;               /* Centra verticalmente il contenuto */
+    gap: 6px;                          /* Distanza tra il "+" e la scritta "Crea nuova ricetta" */
+    border: none;                      /* Rimuove il bordo di default del pulsante */
+    border-radius: 999px;              /* Forma a pillola arrotondata */
+    padding: 0 22px;                   /* Spaziatura interna laterale del bottone */
+    background-color: var(--color-primary); /* Colore principale (es. arancione o verde ricettario) */
+    color: var(--color-text-inverse);  /* Testo del pulsante contrastante (es. bianco) */
+    font-weight: 800;                  /* Testo in grassetto marcato */
+    white-space: nowrap;               /* Impedisce al testo di andare a capo */
+    cursor: pointer;                   /* Cambia il cursore in "manina" quando ci passi sopra */
+    box-shadow: 0 3px 0 var(--color-primary-hover); /* Effetto 3D (un bordino inferiore più scuro) */
+}
+
+.button-create-recipe:hover {
+    background-color: var(--color-primary-hover); /* Cambia colore quando il mouse ci passa sopra */
+}
+
+/* BARRA DELLE CATEGORIE (SOTTO-NAVIGAZIONE) */
+
 .category-nav {
-    min-height: 48px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 28px;
-    padding: 0 20px;
-    background-color: var(--color-secondary);
+    min-height: 48px;                  /* Altezza minima della barra delle categorie */
+    display: flex;                     /* Dispone le categorie (Antipasti, Primi, ecc) in riga */
+    align-items: center;               /* Allineamento verticale al centro */
+    justify-content: center;           /* Centra le categorie orizzontalmente sullo schermo */
+    gap: 28px;                         /* Spazio generoso di 28px tra un link e l'altro */
+    padding: 0 20px;                   /* Spazio di sicurezza ai lati */
+    background-color: var(--color-secondary); /* Sfondo della barra delle categorie */
 }
 
 .category-nav a {
-    color: var(--color-text);
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: 600;
+    color: var(--color-text);          /* Colore dei link delle categorie */
+    text-decoration: none;             /* Rimuove la sottolineatura di default dai link */
+    font-size: 18px;                   /* Dimensione del testo dei link */
+    font-weight: 600;                  /* Testo leggermente in grassetto per leggibilità */
 }
 
 .category-nav a:hover {
-    color: var(--color-footer);
-    text-decoration: underline;
+    color: var(--color-footer);        /* Cambia colore al passaggio del mouse */
+    text-decoration: underline;        /* Mostra la sottolineatura solo al passaggio del mouse */
 }
 
+/* MEDIA QUERIES (DESIGN RESPONSIVO PER TABLET E SMARTPHONE) */
+
+/* --- TABLET: Schermi inferiori a 900px --- */
 @media (max-width: 900px) {
     .box-header {
+        /* Cambia la colonna centrale: ora prende tutto lo spazio disponibile (1fr) */
         grid-template-columns: auto 1fr auto;
-        min-height: 84px;
-        padding: 0 18px;
-        gap: 14px;
+        min-height: 84px;              /* Riduce leggermente l'altezza dell'header */
+        padding: 0 18px;               /* Riduce i margini laterali */
+        gap: 14px;                     /* Avvicina gli elementi */
     }
 
     .logo-text {
-        display: none;
+        display: none;                 /* Nasconde la scritta "RICETTARIO", rimane solo l'icona */
     }
 
     .header-center {
-        gap: 10px;
+        gap: 10px;                     /* Riduce lo spazio tra ricerca e bottone crea */
     }
 
     .button-create-recipe span {
-        display: none;
+        display: none;                 /* Nasconde il testo "Crea nuova ricetta" */
     }
 
     .button-create-recipe {
-        width: 46px;
-        padding: 0;
-        justify-content: center;
+        width: 46px;                   /* Il bottone diventa un cerchio perfetto da 46x46 */
+        padding: 0;                    /* Azzera il padding laterale vecchio */
+        justify-content: center;       /* Centra perfettamente l'icona "+" rimasta sola */
     }
 
     .category-nav {
-        justify-content: flex-start;
-        overflow-x: auto;
+        justify-content: flex-start;   /* Allinea le categorie a sinistra */
+        overflow-x: auto;              /* Abilita lo scroll orizzontale se le categorie escono dallo schermo */
     }
 
     .category-nav a {
-        white-space: nowrap;
+        white-space: nowrap;           /* Impedisce alle singole parole (es. "Primi piatti") di spezzarsi */
     }
 }
 
+/* --- SMARTPHONE: Schermi inferiori a 560px --- */
 @media (max-width: 560px) {
     .box-header {
-        grid-template-columns: auto auto;
+        grid-template-columns: auto auto; /* Riduce la griglia a sole due colonne */
+        /* Cambia il layout disponendo gli elementi su due righe:
+           Riga 1: left (Menu e Logo) a sinistra, right (Profilo) a destra.
+           Riga 2: center (Ricerca e Bottone "+") occupa tutta la riga sotto */
         grid-template-areas:
             "left right"
             "center center";
-        min-height: auto;
-        padding: 12px 16px;
+        min-height: auto;              /* L'altezza si adatta da sola al nuovo contenuto su due righe */
+        padding: 12px 16px;            /* Spaziatura interna ridotta per telefoni */
     }
 
+    /* Assegnazione delle posizioni strutturali decise nella grid-template-areas: */
     .header-left {
         grid-area: left;
     }
@@ -207,6 +234,6 @@
     }
 
     .search-container {
-        min-width: 0;
+        min-width: 0;                  /* Permette alla barra di ricerca di stringersi liberamente sui telefoni */
     }
 }

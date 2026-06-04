@@ -1,7 +1,20 @@
-<app-header></app-header>
+<mat-sidenav-container class="sidebar-container" [class.sidebar-open]="sidebar.opened">
 
-<main>
-  <router-outlet></router-outlet>
-</main>
+  <mat-sidenav #sidebar="matSidenav" mode="over">
+    <app-sidenav (closeClick)="sidebar.close()"></app-sidenav>
+  </mat-sidenav>
 
-<app-footer></app-footer>
+  <mat-sidenav-content>
+    @if (router.url !== '/login'){
+    <app-header (menuClick)="sidebar.toggle()"></app-header>}
+
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+
+    @if (router.url !== '/login'){
+    <app-footer></app-footer>}
+
+  </mat-sidenav-content>
+
+</mat-sidenav-container>
