@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { MatIcon } from "@angular/material/icon";
+import { RecipeCardModel } from '../models/recipe-card';
 
 @Component({
   selector: 'app-recipe-card',
@@ -9,7 +10,7 @@ import { MatIcon } from "@angular/material/icon";
 })
 export class RecipeCard {
 
-  @Input() recipe?: any;
+  @Input() recipe?: RecipeCardModel;
 
 
 }

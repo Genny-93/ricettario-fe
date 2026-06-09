@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { Login } from './form-login/form-login';
 import { Homepage } from './homepage/homepage';
-import { Sidenav } from './sidenav/sidenav';
+import { RecipeCard } from './recipe-card/recipe-card';
 
 export const routes: Routes = [
 
@@ -11,6 +11,6 @@ export const routes: Routes = [
 
     { path: 'home', component: Homepage },
 
-    { path: 'sidenav', component: Sidenav }
+    { path: 'card', component: RecipeCard }
 
 ];
