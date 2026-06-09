@@ -1,0 +1,28 @@
+
+    <div class="card">
+
+        <div class="image-wrapper">
+            <img class="recipe-image" [src]="recipe?.url" alt="Immagine ricetta">
+            <button mat-icon-button class="favorite-button" title="Aggiungi ai preferiti">
+                <mat-icon>favorite</mat-icon> </button>
+        </div>
+
+
+        <h3 class="title-recipe"><strong>{{recipe?.title}}</strong></h3>
+        <div class="card-footer">
+
+            <div class="time-container">
+                <mat-icon>timelapse</mat-icon>
+                <span class="tempo">{{recipe?.time}}</span>
+            </div>
+
+            <div class="dietary-icons">
+                <mat-icon title="Senza Lattosio">water_drop</mat-icon>
+                <mat-icon title="Vegetariano">eco</mat-icon>
+            </div>
+            <div class="rating-container">
+                <mat-icon class="valutazione">star</mat-icon>
+                <span>{{recipe?.rating}}</span>
+            </div>
+        </div>
+    </div>

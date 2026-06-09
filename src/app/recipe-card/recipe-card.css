@@ -1,0 +1,155 @@
+.image-wrapper {
+    position: relative;
+    /* Serve per tenere il cuore ancorato all'immagine */
+
+    /* I margini negativi compensano esattamente il "padding: 15px" della tua .card */
+    margin-top: -15px;
+    margin-left: -15px;
+    margin-right: -15px;
+
+    /* La larghezza deve coprire il 100% più i 30px persi dal padding laterale */
+    width: calc(100% + 30px);
+}
+
+/* LA SINGOLA CARD */
+.card {
+    background-color: var(--color-card);
+    width: 320px;
+    /* Fissata la larghezza */
+    padding: 15px;
+
+    border-radius: 12px;
+    border-style: solid;
+    border-color: var(--color-border);
+    border-width: 3.5px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    /* Crea distanza uniforme tra immagine, titolo e footer */
+    align-items: center;
+
+    /* Stile "Material": leggera ombra e animazione al passaggio del mouse */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    /* La card si "solleva" leggermente al passaggio del mouse */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+/* L'IMMAGINE DELLA RICETTA */
+
+.recipe-image {
+    display: block;
+    width: 100%;
+    height: 220px;
+    /* La tua altezza */
+    object-fit: cover;
+
+    /* Arrotondiamo solo gli angoli superiori per seguire il bordo della tua card (12px) */
+    border-top-left-radius: 8.5px;
+    border-top-right-radius: 8.5px;
+}
+
+.favorite-button {
+    position: absolute;
+    top: 10px;
+    /* Distanza dall'alto dell'immagine */
+    right: 10px;
+    /* Distanza da destra dell'immagine */
+
+    background-color: rgba(255, 255, 255, 0.7);
+    /* Sfondo semi-trasparente */
+    color: var(--color-primary);
+    /* Colore del cuore */
+
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    cursor: pointer;
+}
+
+/* IL TITOLO */
+.title-recipe {
+    font-size: 1.3rem;
+    color: var(--color-primary);
+    /* Usiamo il tuo rosso/arancio per dare risalto al titolo */
+    margin: 0;
+    /* Rimuoviamo il margine di default dell'H3 per evitare spazi vuoti inutili */
+    text-align: center;
+
+    /* MODIFICA: Riserva lo spazio esatto per 3 righe */
+    line-height: 1.4em;
+    /* Fissa l'altezza di una singola riga */
+    height: 4.2em;
+    /* 1.4em * 3 righe = 4.2em. Il contenitore sarà sempre alto 3 righe esatte */
+
+    /* MODIFICA: Tronca il testo in eccesso con i puntini di sospensione se supera le 3 righe */
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.dietary-icons {
+    display: flex;
+    gap: 6px;
+    /* Spaziatura tra un'icona e l'altra */
+    align-items: center;
+    color: var(--color-secondary);
+    /* Usiamo il verde salvia della tua palette! */
+}
+
+/* IL FOOTER (TEMPO E STELLA) */
+.card-footer {
+    margin-top: auto;
+    /* Il trucco che fa cadere il footer in basso */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    align-self: stretch;
+    /* Obbliga il footer a prendere tutta la larghezza ignorando il "center" della card */
+
+    /* Aggiunta di stile: una linea superiore per separare i dettagli dal resto e uso dei colori text-muted */
+    border-top: 1px solid var(--color-border);
+    padding-top: 12px;
+    color: var(--color-text-muted);
+}
+
+/* IL TEMPO E LA VALUTAZIONE */
+.tempo {
+    font-weight: bold;
+    font-size: 0.95rem;
+}
+
+.valutazione {
+    color: var(--color-warning);
+    /* Colora l'icona Material con il giallo che hai in palette! */
+}
+
+.rating-container {
+    display: flex;
+    align-items: center;
+    /* Allinea perfettamente al centro la stella e il numero */
+    gap: 4px;
+    /* Lascia un micro-spazio tra la stella e il numero per non farli sbattere. Se li vuoi letteralmente incollati, metti 0 */
+}
+
+/* IL NUMERO DEL PUNTEGGIO (Opzionale, per renderlo più leggibile) */
+.punteggio {
+    font-weight: bold;
+    font-size: 0.95rem;
+}
+
+.time-container {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}

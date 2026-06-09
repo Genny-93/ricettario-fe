@@ -1,0 +1,9 @@
+.container-box {
+    display: flex;
+    flex-wrap: wrap;
+    /* IMPORTANTE: Se lo schermo stringe, manda le card a capo invece di schiacciarle */
+    padding: 20px;
+    gap: 30px;
+    /* Aumentato un po' il gap tra le card per farle respirare */
+    justify-content: center;
+}
