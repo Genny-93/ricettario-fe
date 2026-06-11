@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
 import { Login } from './form-login/form-login';
 import { Homepage } from './homepage/homepage';
-import { RecipeCard } from './recipe-card/recipe-card';
+import { RicettePerCategoriaPage } from './ricette-per-categoria-page/ricette-per-categoria-page';
 
 export const routes: Routes = [
 
@@ -11,6 +11,6 @@ export const routes: Routes = [
 
     { path: 'home', component: Homepage },
 
-    { path: 'card', component: RecipeCard }
+    { path: 'recipe-by-category/:categoryName', component: RicettePerCategoriaPage, pathMatch:'full' }
 
 ];

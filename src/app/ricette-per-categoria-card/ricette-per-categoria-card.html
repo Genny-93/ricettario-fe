@@ -1,0 +1,32 @@
+
+<div class="container-card-cat">
+    <div class="image-wrapper">
+        <img class="recipe-image"
+            [src]="recipe?.imgPrincipale"
+            alt="{{recipe?.titolo}}">
+        <button mat-icon-button class="favorite-button" title="Aggiungi ai preferiti">
+            <mat-icon>favorite_border</mat-icon>
+        </button>
+    </div>
+    <div class="dati-ricetta">
+        <div class="header-stats">
+            <span class="stat-badge commenti"><mat-icon>local_fire_department</mat-icon>{{recipe?.votiTotali}}</span>
+            <span class="stat-badge rating"><mat-icon>star</mat-icon>{{recipe?.valutazioneMedia}}</span>
+        </div>
+        <h3 class="title-recipe">{{recipe?.titolo}}</h3>
+        <p class="little-description">
+            {{recipe?.descBreve}}
+        </p>
+        <div class="footer-card-cat">
+            <div class="info-group">
+                <span class="info-item"><mat-icon>restaurant</mat-icon> 3</span>
+                <span class="info-item"><mat-icon>schedule</mat-icon> {{recipe?.tempoDiPreparazione}} min</span>
+                <span class="info-item"><mat-icon>local_fire_department</mat-icon> Kcal 440</span>
+            </div>
+            <div class="tag-icons">
+                <mat-icon class="diet-icon">opacity_hidden</mat-icon>
+                <mat-icon class="diet-icon">eco</mat-icon>
+            </div>
+        </div>
+    </div>
+</div>

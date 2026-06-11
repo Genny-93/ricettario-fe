@@ -1,0 +1,17 @@
+.container-cards-cat {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Sostituisce i margini per distanziare le card in modo uniforme */
+    padding: 24px;
+
+}
+
+.title {
+    /* Impone al titolo di occupare tutta la larghezza della griglia */
+    grid-column: 1 / -1;
+    color: var(--color-text);
+    font-size: 32px;
+    margin: 0;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--color-border);
+}

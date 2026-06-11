@@ -1,0 +1,160 @@
+/* STRUTTURA ESTERNA DELLA CARD (FISSA) */
+.container-card-cat {
+    display: grid;                 /* Attiva la griglia per dividere la card in colonne */
+    grid-template-columns: 35% 65%;/* Divide lo spazio: 35% all'immagine e 65% al testo */
+    width: 720px;                  /* Blocca la larghezza della card a 720 pixel */
+    height: 220px;                  /* Blocca l'altezza della card a 220 pixel */
+    box-sizing: border-box;         /* Include bordi e padding nei 720x220px senza allargare la card */
+    background-color: var(--color-card); /* Colore dello sfondo preso dalle variabili */
+    border: 3px solid var(--color-border); /* Spessore, tipo e colore del bordo esterno */
+    border-radius: 12px;            /* Arrotonda i 4 angoli esterni della card */
+    overflow: hidden;               /* Taglia l'immagine se esce dagli angoli arrotondati della card */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Crea una leggera ombra scura sotto la card */
+    transition: transform 0.2s, box-shadow 0.2s; /* Rende fluido l'effetto movimento quando ci passi sopra */
+    margin: 20px;                   /* Spazio vuoto esterno intorno a tutta la card */
+}
+
+/* EFFETTO AL PASSAGGIO DEL MOUSE SULLA CARD */
+.container-card-cat:hover {
+    transform: translateY(-4px);    /* Sposta la card verso l'alto di 4 pixel (effetto sollevamento) */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Rende l'ombra sotto più intensa e diffusa */
+}
+
+/* CONTENITORE LATO SINISTRO (FOTO + CUORE) */
+.image-wrapper {
+    position: relative;             /* Serve come punto di riferimento per incastrare il cuore sopra la foto */
+    width: 100%;                    /* Copre tutto il 35% della colonna assegnata */
+    height: 100%;                   /* Copre tutta l'altezza della card (220px) */
+    overflow: hidden;
+}
+
+/* IL TAG IMMAGINE REALE */
+.recipe-image {
+    display: block;                 /* Elimina piccoli spazi vuoti fastidiosi sotto le immagini */
+    width: 100%;                    /* Forzato a riempire la larghezza del suo contenitore */
+    height: 100%;                   /* Forzato a riempire l'altezza del suo contenitore */
+    object-fit: cover;              /* Ritaglia la foto automaticamente senza storcerla o allungarla */
+    object-position: center;
+}
+
+
+/* IL BOTTONE DEL CUORE */
+.favorite-button {
+    position: absolute;             /* Permette di staccare il bottone e muoverlo liberamente sopra la foto */
+    top: 15px;                      /* Distanza di 15 pixel dal bordo superiore della foto */
+    right: 15px;                    /* Distanza di 15 pixel dal bordo destro della foto */
+    background: rgba(255, 255, 255, 0.2); /* Sfondo bianco ma molto trasparente */
+    backdrop-filter: blur(4px);     /* Sfoca leggermente l'immagine che si trova dietro al bottone */
+    color: var(--color-text-inverse); /* Colore del cuore (bianco) */
+    border-radius: 50%;             /* Rende il bottone perfettamente circolare */
+    width: 38px;                    /* Larghezza del cerchio */
+    height: 38px;                   /* Altezza del cerchio */
+    border: none;                   /* Rimuove il bordo nero standard dei bottoni HTML */
+    cursor: pointer;                /* Trasforma la freccia del mouse in una manina quando ci passi sopra */
+    display: flex;                  /* Attiva il flexbox all'interno del cerchio */
+    justify-content: center;        /* Centra il cuore in orizzontale dentro al cerchio */
+    align-items: center;            /* Centra il cuore in verticale dentro al cerchio */
+}
+
+/* CONTENITORE LATO DESTRO (ZONA TESTI E DETTAGLI) */
+.dati-ricetta {
+    padding: 15px 20px;             /* Spazio vuoto interno: 15px sopra/sotto e 20px a destra/sinistra */
+    display: flex;                  /* Attiva il flexbox per allineare gli elementi interni */
+    flex-direction: column;         /* Dispone gli elementi (badge, titolo, descrizione, footer) in verticale */
+    height: 214px;                   /* Sfrutta tutta l'altezza interna disponibile */
+    box-sizing: border-box;         /* Evita che il padding modifichi l'altezza totale */
+    overflow: hidden;
+}
+
+/* ACCORPAMENTO ALLINEAMENTO ORIZZONTALE */
+/* Dice a tutti questi contenitori di allineare i propri elementi interni (icone e testi) sulla stessa linea */
+.header-stats,
+.stat-badge,
+.info-item,
+.footer-card-cat,
+.info-group,
+.tag-icons {
+    display: flex;                  /* Attiva il flexbox per gestire la riga */
+    align-items: center;            /* Allinea perfettamente al centro verticale icone e scritte */
+}
+
+/* LA RIGA IN ALTO A DESTRA (FUOCO E STELLA) */
+.header-stats {
+    justify-content: flex-end;      /* Spinge i badge totalmente verso destra */
+    gap: 12px;                      /* Spazio di 12 pixel tra il badge del fuoco e quello della stella */
+    height: 20px;                   /* Altezza fissa della riga */
+    margin-bottom: 5px;             /* Distanza dal titolo sottostante */
+}
+
+/* IL SINGOLO BADGE (ICONA + NUMERO) */
+.stat-badge {
+    gap: 4px;                       /* Distanza di 4 pixel tra l'icona e il testo numerico */
+    font-size: 0.85rem;             /* Scritta leggermente più piccola dello standard */
+    font-weight: bold;              /* Testo in grassetto */
+    color: var(--color-text-muted); /* Colore del testo grigio/disattivato */
+}
+
+/* COLORI DELLE ICONE */
+.stat-badge.commenti mat-icon { color: #ff9100; } /* Icona del fuoco colorata di arancione */
+.stat-badge.rating mat-icon   { color: #ffb300; } /* Icona della stella colorata di giallo */
+.info-item mat-icon           { color: #a0a0a0; } /* Icone del footer (orologio, piatto) colorate di grigio chiaro */
+.diet-icon                    /* Icone delle intolleranze colorate di grigio chiaro */ { color: #b0b0b0; }
+
+/* MISURA DELLE ICONE MATERIAL */
+.container-card-cat mat-icon {
+    font-size: 18px;                /* Forza la dimensione dell'icona a 18 pixel */
+    width: 18px;                    /* Larghezza del quadrato dell'icona */
+    height: 18px;                   /* Altezza del quadrato dell'icona */
+}
+
+/* STRUTTURA PER TRONCARE I TESTI TROPPO LUNGHI */
+.title-recipe,
+.little-description {
+    color: var(--color-primary);
+    display: -webkit-box;           /* Sistema speciale necessario per attivare il taglio multi-riga */
+    -webkit-box-orient: vertical;   /* Specifica che il blocco di testo si sviluppa in verticale */
+    overflow: hidden;               /* Nasconde tutto il testo che supererebbe la seconda riga */
+}
+
+/* IL TITOLO DELLA RICETTA */
+.title-recipe {
+    font-size: 1.35rem;             /* Dimensione del testo del titolo */
+    font-weight: 800;               /* Grassetto molto marcato */
+    margin: 0 0 6px 0;              /* Azzera i margini e lascia solo 6px di spazio verso il basso */
+    line-height: 1.25em;            /* Altezza di una singola riga di testo */
+    height: 2.5em;                  /* Spazio totale bloccato (1.25em per riga * 2 righe = 2.5em) */
+}
+
+/* LA DESCRIZIONE DELLA RICETTA */
+.little-description {
+    font-size: 0.9rem;              /* Scritta più piccola rispetto al titolo */
+    color: var(--color-text-muted); /* Colore grigio per staccare dal titolo */
+    line-height: 1.4;             /* Altezza di una singola riga di testo */
+    margin: 0;                      /* Rimuove i margini predefiniti */
+    height: 2.8em;
+}
+/* IL FOOTER DELLA CARD (ZONA IN BASSO) */
+.footer-card-cat {
+    margin-top: auto;               /* Spinge tutto il footer sul fondo della card, creando simmetria */
+    justify-content: space-between; /* Mette i dati a sinistra e le intolleranze a destra */
+    border-top: 1px solid var(--color-border); /* Linea sottile grigia divisoria sopra il footer */
+    padding-top: 10px;              /* Spazio vuoto interno sopra la linea divisoria */
+}
+
+/* GRUPPO DATI (Persone, Tempo, Kcal) */
+.info-group {
+    gap: 15px;                      /* Distanza di 15 pixel tra un dato e l'altro */
+}
+
+/* IL SINGOLO DATO DEL FOOTER */
+.info-item {
+    gap: 6px;                       /* Distanza di 6 pixel tra l'icona grigia e il suo testo */
+    font-size: 0.85rem;             /* Dimensione del testo */
+    color: var(--color-text-muted); /* Colore del testo grigio */
+    font-weight: 500;               /* Grassetto medio/leggero */
+}
+
+/* GRUPPO DELLE DIETE/INTOLLERANZE (LATO DESTRO) */
+.tag-icons {
+    gap: 8px;                       /* Distanza di 8 pixel tra un'icona di intolleranza e l'altra */
+}
