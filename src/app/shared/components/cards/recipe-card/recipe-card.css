@@ -9,6 +9,7 @@
 
     /* La larghezza deve coprire il 100% più i 30px persi dal padding laterale */
     width: calc(100% + 30px);
+    overflow: hidden;
 }
 
 /* LA SINGOLA CARD */
@@ -52,6 +53,7 @@
     /* Arrotondiamo solo gli angoli superiori per seguire il bordo della tua card (12px) */
     border-top-left-radius: 8.5px;
     border-top-right-radius: 8.5px;
+    object-position:center 55%;
 }
 
 .favorite-button {

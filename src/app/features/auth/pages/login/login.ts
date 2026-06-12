@@ -1,15 +1,15 @@
 import { Component, OnDestroy } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { LoginRequest } from '../models/login-request';
-import { Authentication } from '../services/auth/authentication';
+import { LoginRequest } from '../../../../shared/models/login-request';
+import { Authentication } from '../../../../core/auth/authentication';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-login',
   imports: [FormsModule],
-  templateUrl: './form-login.html',
-  styleUrl: './form-login.css',
+  templateUrl: './login.html',
+  styleUrl: './login.css',
 })
 export class Login implements OnDestroy {
 

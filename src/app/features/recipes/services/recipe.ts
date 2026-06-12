@@ -1,20 +1,18 @@
 import { H } from '@angular/cdk/keycodes';
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { RecipeCardModel } from '../../models/recipe-card';
+import { RecipeCardModel } from '../../../shared/models/recipe-card';
 
 @Injectable({
   providedIn: 'root',
 })
 export class Recipe {
 
+  //al posto dell'injection tramite costruttore
+  private http = inject(HttpClient);
 
   private baseUrl = 'http://localhost:8080/recipes';
-
-  constructor(private http: HttpClient) {
-
-  }
 
   getAllRecipes(): Observable<RecipeCardModel[]> {
     return this.http.get<RecipeCardModel[]>(`${this.baseUrl}/cards`, {

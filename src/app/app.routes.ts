@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
-import { Login } from './form-login/form-login';
-import { Homepage } from './homepage/homepage';
-import { RicettePerCategoriaPage } from './ricette-per-categoria-page/ricette-per-categoria-page';
+import { Login } from './features/auth/pages/login/login';
+import { RicettePerCategoriaPage } from './features/recipes/pages/ricette-per-categoria-page/ricette-per-categoria-page';
+import { Homepage } from './features/dashboard/pages/homepage/homepage';
 
 export const routes: Routes = [
 

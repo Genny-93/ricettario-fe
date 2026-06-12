@@ -6,7 +6,6 @@ export interface RecipeCardModel {
     votiTotali: number;
     valutazioneMedia: number;
     tempoDiPreparazione : number;
-
     descBreve: string;
 
 }

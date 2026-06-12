@@ -1,9 +1,9 @@
 import { Component, signal } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
-import { Header } from "./header/header";
-import { Footer } from "./footer/footer";
+import { Header } from "./shared/components/header/header";
 import { MatSidenavContent, MatSidenavModule } from "@angular/material/sidenav";
-import { Sidenav } from "./sidenav/sidenav";
+import { Sidenav } from "./shared/components/sidenav/sidenav";
+import { Footer } from './shared/components/footer/footer';
 
 @Component({
   selector: 'app-root',

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { RecipeCard } from '../recipe-card/recipe-card';
-import { Recipe } from '../services/recipe/recipe';
-import { RecipeCardModel } from '../models/recipe-card';
+import { RecipeCard } from '../../../../shared/components/cards/recipe-card/recipe-card';
+import { RecipeCardModel } from '../../../../shared/models/recipe-card';
+import { Recipe } from '../../../recipes/services/recipe';
 
 @Component({
   selector: 'app-homepage',

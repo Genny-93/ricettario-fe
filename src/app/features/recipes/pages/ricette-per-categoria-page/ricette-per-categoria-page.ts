@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Recipe } from '../services/recipe/recipe';
-import { RicetteCategoriaCard } from '../ricette-per-categoria-card/ricette-per-categoria-card';
-import { RecipeCardModel } from '../models/recipe-card';
+import { Recipe } from '../../services/recipe';
+import { RecipeCardModel } from '../../../../shared/models/recipe-card';
 import { ActivatedRoute } from '@angular/router';
+import { RicetteCategoriaCard } from '../../../../shared/components/cards/ricette-per-categoria-card/ricette-per-categoria-card';
 
 @Component({
   selector: 'app-ricette-per-categoria-page',
@@ -34,10 +34,6 @@ export class RicettePerCategoriaPage implements OnInit {
         }
       });
     });
-
-
   }
-
-
 
 }

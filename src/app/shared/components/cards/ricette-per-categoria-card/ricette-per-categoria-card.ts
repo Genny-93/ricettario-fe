@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
-import { RecipeCardModel } from '../models/recipe-card';
+import { RecipeCardModel } from '../../../models/recipe-card';
+
 
 @Component({
   selector: 'app-ricette-categoria-card',
