@@ -6,14 +6,14 @@
   </mat-sidenav>
 
   <mat-sidenav-content>
-    @if (router.url !== '/login'){
+    @if (router.url !== '/login' && router.url !== '/register' && router.url !== '/forgot-password' && !router.url.startsWith('/reset-password')){
     <app-header (menuClick)="sidebar.toggle()"></app-header>}
 
     <main>
       <router-outlet></router-outlet>
     </main>
 
-    @if (router.url !== '/login'){
+    @if (router.url !== '/login' && router.url !== '/register' && router.url !== '/forgot-password' && !router.url.startsWith('/reset-password')){
     <app-footer></app-footer>}
 
   </mat-sidenav-content>
