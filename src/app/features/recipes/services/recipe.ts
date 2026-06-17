@@ -15,6 +15,7 @@ export class Recipe {
   private baseUrl = 'http://localhost:8080/recipes';
 
   getAllRecipes(): Observable<RecipeCardModel[]> {
+  
     return this.http.get<RecipeCardModel[]>(`${this.baseUrl}/cards`, {
       withCredentials: true
     });
