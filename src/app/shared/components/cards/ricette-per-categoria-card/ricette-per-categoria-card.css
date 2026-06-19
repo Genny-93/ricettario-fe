@@ -12,6 +12,7 @@
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); /* Crea una leggera ombra scura sotto la card */
     transition: transform 0.2s, box-shadow 0.2s; /* Rende fluido l'effetto movimento quando ci passi sopra */
     margin: 20px;                   /* Spazio vuoto esterno intorno a tutta la card */
+    cursor: pointer;
 }
 
 /* EFFETTO AL PASSAGGIO DEL MOUSE SULLA CARD */

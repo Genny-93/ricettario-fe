@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Recipe } from '../../services/recipe';
 import { RecipeCardModel } from '../../../../shared/models/recipe-card';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RicetteCategoriaCard } from '../../../../shared/components/cards/ricette-per-categoria-card/ricette-per-categoria-card';
 
 @Component({
@@ -15,14 +15,14 @@ export class RicettePerCategoriaPage implements OnInit {
   categoryName: string = '';
   recipesList: RecipeCardModel[] = [];
 
-  constructor(private recipeService: Recipe, private route: ActivatedRoute) { }
+  constructor(private recipeService: Recipe, private activatedRoute: ActivatedRoute, private route: Router) { }
 
 
 
 
   ngOnInit(): void {
 
-    this.route.params.subscribe(parametro => {
+    this.activatedRoute.params.subscribe(parametro => {
       this.categoryName = parametro['categoryName'];
       console.log(this.categoryName);
       this.recipeService.getRecipesByCategory(this.categoryName).subscribe({
@@ -36,4 +36,8 @@ export class RicettePerCategoriaPage implements OnInit {
     });
   }
 
+
+  goToRecipe(id: number): void {
+    this.route.navigateByUrl(`/recipe/${id}`)
+  }
 }

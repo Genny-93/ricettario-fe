@@ -13,7 +13,7 @@
 }
 
 /* LA SINGOLA CARD */
-.card {
+.card-container {
     background-color: var(--color-card);
     width: 320px;
     /* Fissata la larghezza */
@@ -33,9 +33,10 @@
     /* Stile "Material": leggera ombra e animazione al passaggio del mouse */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
     transition: transform 0.2s ease-in-out, box-shadow 0.2s;
+    cursor: pointer;
 }
 
-.card:hover {
+.card-container:hover {
     transform: translateY(-5px);
     /* La card si "solleva" leggermente al passaggio del mouse */
     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);

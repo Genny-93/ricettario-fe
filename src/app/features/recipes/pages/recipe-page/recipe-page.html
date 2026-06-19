@@ -1,1 +1,123 @@
-<p>recipe-page works!</p>
+<div class="container text-center mt-5 mb-5">
+    <div class="row g-5 align-items-center">
+
+        <div class="col-12 col-md-5">
+            <img [src]="recipe?.imgPrincipale" alt="Cheesecake ai Frutti di Bosco" class="recipe-img-fixed rounded-4 shadow">
+        </div>
+
+        <div class="col-12 col-md-4 text-start">
+            <h2 class="recipe-title mb-3">{{recipe?.titolo}}</h2>
+            <p class="text-muted" style="font-size: 1.1rem; line-height: 1.6;">
+                {{recipe?.descBreve}}
+            </p>
+        </div>
+
+        <div class="col-12 col-md-3 text-start">
+
+            <div class="categories mb-4 d-flex flex-wrap gap-2">
+                @for(categoria of recipe?.categorie; track categoria.nomeCategoriaRicetta){
+                <span class="custom-badge">{{categoria.nomeCategoriaRicetta}}</span>}
+            </div>
+
+            <div class="style-card text-start">
+                <div class="mb-3"><strong>Difficoltà:</strong> {{recipe?.difficolta}}</div>
+                <div class="mb-3"><strong>Preparazione:</strong> {{recipe?.tempoDiPreparazione}} min</div>
+                <div class="mb-3"><strong>Voto:</strong> {{recipe?.valutazioneMedia}} ({{recipe?.votiTotali}})</div>
+                <div><strong>Costo:</strong> Basso</div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="row mt-5 g-5 text-start">
+
+        <div class="col-12 col-md-4">
+            <div class="style-card h-100">
+                <h3 class="mb-4"
+                    style="color: var(--color-primary); font-family: 'Dancing Script', cursive; font-size: 2.5rem;">
+                    Ingredienti</h3>
+                <ul class="lista-ingredienti">
+                    @for(composizione of recipe?.composizioneRicetta; track composizione.ingrediente){
+                    <li>{{composizione.quantita}} {{composizione.unitaDiMisura}} di {{composizione.ingrediente.nome}}
+                    </li>}
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-12 col-md-8">
+            <div class="prep-section h-100">
+                <h3 class="mb-4" style="font-family: 'Dancing Script', cursive; font-size: 2.5rem;">Preparazione</h3>
+
+                <div class="accordion" id="recipeAccordion">
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                Passo 1: La Base
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show"
+                            data-bs-parent="#recipeAccordion">
+                            <div class="accordion-body">
+                                Trita i biscotti e mescolali con il burro fuso. Versa il composto in uno stampo e
+                                compatta bene. Lascia riposare in frigo.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                Passo 2: La Gelatina
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#recipeAccordion">
+                            <div class="accordion-body">
+                                Ammorbidisci la gelatina in acqua fredda. Scalda un cucchiaio di panna e sciogli la
+                                gelatina. Lascia intiepidire.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                Passo 3: La Crema
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#recipeAccordion">
+                            <div class="accordion-body">
+                                Monta la panna con lo zucchero a velo. Aggiungi il formaggio spalmabile e mescola fino a
+                                ottenere una crema liscia.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--<div class="step-container">
+                    <div class="step-number">1</div>
+                    <p class="step-text">Trita i biscotti e mescolali con il burro fuso. Versa il composto in uno stampo e compatta bene. Lascia riposare in frigo.</p>
+                </div>
+
+                <div class="step-container">
+                    <div class="step-number">2</div>
+                    <p class="step-text">Ammorbidisci la gelatina in acqua fredda. Scalda un cucchiaio di panna e sciogli la gelatina. Lascia intiepidire.</p>
+                </div>
+
+                <div class="step-container">
+                    <div class="step-number">3</div>
+                    <p class="step-text">Monta la panna con lo zucchero a velo. Aggiungi il formaggio spalmabile e mescola fino a ottenere una crema liscia.</p>
+                </div>
+
+                <div class="step-container">
+                    <div class="step-number">4</div>
+                    <p class="step-text">Incorpora la gelatina alla crema e versa il composto sulla base di biscotti. Livella e lascia rassodare in frigo per almeno 4 ore.</p>
+                </div>
+            -->

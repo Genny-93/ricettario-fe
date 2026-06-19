@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { RecipeCardModel } from '../../../shared/models/recipe-card';
+import { RecipeModel } from '../../../shared/models/recipe';
 
 @Injectable({
   providedIn: 'root',
@@ -15,7 +16,7 @@ export class Recipe {
   private baseUrl = 'http://localhost:8080/recipes';
 
   getAllRecipes(): Observable<RecipeCardModel[]> {
-  
+
     return this.http.get<RecipeCardModel[]>(`${this.baseUrl}/cards`, {
       withCredentials: true
     });
@@ -25,5 +26,9 @@ export class Recipe {
     return this.http.get<RecipeCardModel[]>(`${this.baseUrl}/category/${nameCategory}`, {
       withCredentials: true
     });
+  }
+
+  getRecipeById(id: number): Observable<RecipeModel> {
+    return this.http.get<RecipeModel>(`${this.baseUrl}/${id}`, { withCredentials: true });
   }
 }

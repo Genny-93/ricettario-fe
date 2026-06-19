@@ -32,7 +32,11 @@ export class Homepage implements OnInit {
       error: (err) => {
         console.log(err);
       }
-    })
+    });
+  }
+
+  goToRecipe(id: number): void {
+    this.router.navigateByUrl(`/recipe/${id}`);
   }
 
 }
