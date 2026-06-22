@@ -1,7 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap');
 
-/* Variabili esistenti */
-/* Stile Titolo Principale */
+/* Regole globali / Utility del progetto */
 .recipe-title {
   font-family: 'Dancing Script', cursive;
   font-size: 4rem;
@@ -9,7 +8,27 @@
   line-height: 1.2;
 }
 
-/* Box con sfondo bianco e ombra (Card) */
+/* Titoli delle sezioni con font speciale */
+.prep-title, .ingredienti-title {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2.5rem;
+}
+
+.prep-title {
+  color: var(--color-primary);
+}
+
+.ingredienti-title {
+  color: var(--color-primary);
+}
+
+/* Componenti della pagina */
+.recipe-img-fixed {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+}
+
 .style-card {
   background-color: var(--color-surface);
   border-radius: 15px;
@@ -17,8 +36,6 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
-/* Sezione Preparazione (Sfondo Scuro arrotondato) */
-/* Utilizza color-footer per mantenere la coerenza con la palette fornita */
 .prep-section {
   background-color: var(--color-footer);
   color: var(--color-text-inverse);
@@ -26,11 +43,6 @@
   padding: 40px;
 }
 
-.prep-section h3 {
-  color: var(--color-primary); /* Titolo preparazione in risalto */
-}
-
-/* Stile Badge Personalizzati */
 .custom-badge {
   background-color: var(--color-card);
   color: var(--color-text);
@@ -41,7 +53,7 @@
   font-size: 0.9rem;
 }
 
-/* Elenco Ingredienti (Puntini colorati) */
+/* Elenco Ingredienti */
 .lista-ingredienti {
   padding-left: 0;
   list-style-type: none;
@@ -62,33 +74,7 @@
   top: -5px;
 }
 
-/* Fasi Preparazione (Numeri nel cerchio colorato) */
-.step-container {
-  display: flex;
-  align-items: flex-start;
-  margin-bottom: 25px;
-}
-
-.step-number {
-  background-color: var(--color-primary);
-  color: var(--color-text-inverse);
-  border-radius: 50%;
-  width: 35px;
-  height: 35px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 600;
-  flex-shrink: 0;
-  margin-right: 15px;
-}
-
-.step-text {
-  margin: 0;
-  line-height: 1.6;
-}
-
-/* Struttura principale dell'accordion */
+/* Struttura dell'accordion */
 #recipeAccordion .accordion-item {
   background-color: var(--color-surface);
   border: 1px solid var(--color-border);
@@ -97,7 +83,6 @@
   overflow: hidden;
 }
 
-/* Pulsante dell'accordion in stato normale/chiuso */
 #recipeAccordion .accordion-button {
   background-color: var(--color-surface);
   color: var(--color-text);
@@ -105,26 +90,24 @@
   box-shadow: none;
 }
 
-/* Pulsante dell'accordion quando è aperto (attivo) */
 #recipeAccordion .accordion-button:not(.collapsed) {
   background-color: var(--color-card);
   color: var(--color-primary);
   box-shadow: inset 0 -1px 0 var(--color-border);
 }
 
-/* Cambia il colore della freccia di Bootstrap quando l'accordion è aperto */
 #recipeAccordion .accordion-button:not(.collapsed)::after {
   background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='%23d6452f'%3e%3cpath fill-rule='evenodd' d='M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z'/%3e%3c/svg%3e");
 }
 
-/* Contenuto interno dell'accordion */
 #recipeAccordion .accordion-body {
   background-color: var(--color-surface);
   color: var(--color-text);
 }
 
-.recipe-img-fixed {
-  width: 100%;
-  height: 350px; /* Impostare l'altezza desiderata per tutte le ricette */
-  object-fit: cover;
+.miniature-image {
+  width: 300px;        /* Larghezza fissa uguale per tutti */
+  height: 300px;       /* Altezza fissa uguale per tutti */
+  object-fit: cover;   /* Taglia e adatta l'immagine senza distorcerla */
+  object-position: center;
 }

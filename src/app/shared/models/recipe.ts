@@ -7,9 +7,11 @@ export interface RecipeModel {
     votiTotali: number;
     valutazioneMedia: number;
     descBreve: string;
+    
     categorie: {
         nomeCategoriaRicetta: string
     }[];
+
     composizioneRicetta: {
         ingrediente: {
             nome: string;
@@ -18,5 +20,11 @@ export interface RecipeModel {
         quantita: number;
         unitaDiMisura: string;
     }[];
+
+    procedimento: {
+        testo: string;
+        media: string;
+    }[];
+    
     tempoDiPreparazione?: number;
 }
