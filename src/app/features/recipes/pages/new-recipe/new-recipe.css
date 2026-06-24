@@ -1,0 +1,198 @@
+/* Container principale della form di inserimento ricetta */
+.container-form-recipe {
+    max-width: 850px;
+    /* Più largo per ospitare le righe degli ingredienti */
+    margin: 3rem auto;
+    padding: 2.5rem;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* Titolo della form */
+.container-form-recipe h2 {
+    text-align: center;
+    color: var(--color-primary);
+    margin-top: 0;
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+}
+
+/* Sottotitoli delle sezioni dinamiche (Ingredienti, Categorie, Fasi) */
+.form-section h3 {
+    color: var(--color-text);
+    font-size: 1.2rem;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    border-left: 4px solid var(--color-secondary);
+    padding-left: 0.5rem;
+}
+
+/* Linea di separazione tra le sezioni */
+.form-divider {
+    border: 0;
+    height: 1px;
+    background: var(--color-border);
+    margin: 2rem 0;
+}
+
+/* Gruppo form standard (Label + Input) */
+.form-group {
+    margin-bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Struttura per allineare elementi orizzontalmente nei FormArray */
+.riga-dinamica {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-end;
+    margin-bottom: 1rem;
+}
+
+/* Gestione delle larghezze proporzionali dentro le righe dinamiche */
+.campo-frazione {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.campo-frazione.largo {
+    flex: 2;
+}
+
+.campo-frazione.stretto {
+    flex: 0.5;
+    min-width: 70px;
+}
+
+/* Etichette degli input e select */
+.form-group label,
+.campo-frazione label {
+    margin-bottom: 0.5rem;
+    color: var(--color-text);
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+/* Campi di input e select uniformati */
+.form-group input,
+.campo-frazione input,
+.campo-frazione select {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: 4px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    width: 100%;
+    box-sizing: border-box;
+    height: 45px;
+    /* Altezza fissa per uniformità tra select e input */
+}
+
+/* Reset per select nativi per mostrare la freccia correttamente */
+.campo-frazione select {
+    cursor: pointer;
+}
+
+/* Effetto focus uniforme */
+.form-group input:focus,
+.campo-frazione input:focus,
+.campo-frazione select:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 2px rgba(214, 69, 47, 0.2);
+}
+
+/* Messaggi di errore basati sulle specifiche fornite */
+.error {
+    color: var(--color-error);
+    margin-top: 0.5rem;
+    font-size: 0.85rem;
+    line-height: 1.2;
+}
+
+/* Margine corretto per gli errori delle righe dinamiche */
+.riga-errore {
+    margin-top: -0.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Bottone per rimuovere elementi dalle righe (Cestino) */
+.btn-rimuovi {
+    background: none;
+    border: none;
+    cursor: pointer;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0.5rem;
+    color: var(--color-text-muted);
+    transition: color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-rimuovi:hover {
+    color: var(--color-error);
+    transform: scale(1.1);
+}
+
+.btn-rimuovi mat-icon {
+    font-size: 24px;
+    width: 24px;
+    height: 24px;
+}
+
+/* Bottoni di aggiunta dinamica (+) */
+.btn-aggiungi {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    margin-top: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    border: 1px dashed var(--color-border);
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.btn-aggiungi:hover {
+    background-color: var(--color-card);
+    border-color: var(--color-secondary-hover);
+}
+
+/* Bottone Submit Invia Ricetta */
+.btn-submit {
+    width: 100%;
+    padding: 0.85rem;
+    margin-top: 1.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--color-text-inverse);
+    background-color: var(--color-primary);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-submit:hover:not([disabled]) {
+    background-color: var(--color-primary-hover);
+}
+
+.btn-submit:active:not([disabled]) {
+    transform: translateY(1px);
+}
+
+.btn-submit[disabled] {
+    background-color: var(--color-secondary);
+    cursor: not-allowed;
+    opacity: 0.7;
+}

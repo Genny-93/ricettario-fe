@@ -1,0 +1,219 @@
+<div class="container-form-recipe">
+
+    <h2>Aggiungi una Nuova Ricetta</h2>
+
+    <form [formGroup]="newRecipeForm" (ngSubmit)="inviaForm()">
+
+        <div class="form-group">
+            <label for="titolo">Titolo Ricetta</label>
+            <input type="text" id="titolo" formControlName="titolo" placeholder="Inserisci nome Ricetta">
+
+            @if (newRecipeForm.get('titolo')?.invalid && (newRecipeForm.get('titolo')?.dirty ||
+            newRecipeForm.get('titolo')?.touched)) {
+            <div class="error">
+                @if (newRecipeForm.get('titolo')?.errors?.['required']) {
+                <small>Il titolo della ricetta è obbligatorio.</small>
+                }
+                @if (newRecipeForm.get('titolo')?.errors?.['minlength']) {
+                <small>Il titolo deve contenere almeno 3 caratteri.</small>
+                }
+            </div>
+            }
+        </div>
+
+        <div class="form-group">
+            <label for="descBreve">Descrizione Breve</label>
+            <input type="text" id="descBreve" formControlName="descBreve" placeholder="Inserisci una breve descrizione">
+
+            @if (newRecipeForm.get('descBreve')?.invalid && (newRecipeForm.get('descBreve')?.dirty ||
+            newRecipeForm.get('descBreve')?.touched)) {
+            <div class="error">
+                @if (newRecipeForm.get('descBreve')?.errors?.['required']) {
+                <small>La descrizione breve è obbligatoria.</small>
+                }
+            </div>
+            }
+        </div>
+
+        <div class="form-group">
+            <label for="tempoPreparazione">Tempo di preparazione (minuti)</label>
+            <input type="number" id="tempoPreparazione" formControlName="tempoDiPreparazione" placeholder="0">
+
+            @if (newRecipeForm.get('tempoDiPreparazione')?.invalid && (newRecipeForm.get('tempoDiPreparazione')?.dirty
+            || newRecipeForm.get('tempoDiPreparazione')?.touched)) {
+            <div class="error">
+                @if (newRecipeForm.get('tempoDiPreparazione')?.errors?.['required']) {
+                <small>Il tempo di preparazione è obbligatorio.</small>
+                }
+                @if (newRecipeForm.get('tempoDiPreparazione')?.errors?.['min']) {
+                <small>Il tempo deve essere maggiore di 0.</small>
+                }
+            </div>
+            }
+        </div>
+
+        <div class="form-group">
+            <label for="imgPrincipale">Url Immagine Principale</label>
+            <input type="text" id="imgPrincipale" formControlName="imgPrincipale"
+                placeholder="https://example.com/immagine.jpg">
+
+            @if (newRecipeForm.get('imgPrincipale')?.invalid && (newRecipeForm.get('imgPrincipale')?.dirty ||
+            newRecipeForm.get('imgPrincipale')?.touched)) {
+            <div class="error">
+                @if (newRecipeForm.get('imgPrincipale')?.errors?.['required']) {
+                <small>L'URL dell'immagine è obbligatorio.</small>
+                }
+            </div>
+            }
+        </div>
+
+        <div class="form-group">
+            <label for="difficolta">Difficoltà (da 1 a 5)</label>
+            <input type="number" id="difficolta" formControlName="difficolta" placeholder="1">
+
+            @if (newRecipeForm.get('difficolta')?.invalid && (newRecipeForm.get('difficolta')?.dirty ||
+            newRecipeForm.get('difficolta')?.touched)) {
+            <div class="error">
+                @if (newRecipeForm.get('difficolta')?.errors?.['required']) {
+                <small>La difficoltà è obbligatoria.</small>
+                }
+                @if (newRecipeForm.get('difficolta')?.errors?.['min'] ||
+                newRecipeForm.get('difficolta')?.errors?.['max']) {
+                <small>La difficoltà deve essere un valore compreso tra 1 e 5.</small>
+                }
+            </div>
+            }
+        </div>
+
+        <hr class="form-divider">
+
+        <div class="form-section">
+            <h3>Ingredienti</h3>
+            <div formArrayName="composizioneRicetta">
+                @for (item of ingredientiFormArray.controls; track item; let i = $index) {
+                <div class="riga-dinamica" [formGroupName]="i">
+
+                    <div class="campo-frazione largo">
+                        <label [for]="'ingrediente-' + i">Ingrediente</label>
+                        <select [id]="'ingrediente-' + i" formControlName="ingredienteNome">
+                            <option value="" disabled selected>Seleziona un ingrediente</option>
+                            @for(ingrediente of ingredienti; track ingrediente.id){
+                            <option [value]="ingrediente.nome">{{ingrediente.nome}}</option>
+                            }
+                        </select>
+                    </div>
+
+                    <div class="campo-frazione stretto">
+                        <label [for]="'quantita-' + i">Quantità</label>
+                        <input type="number" [id]="'quantita-' + i" formControlName="quantita" placeholder="0">
+                    </div>
+
+                    <div class="campo-frazione">
+                        <label [for]="'unitaDiMisura-' + i">Unità</label>
+                        <select [id]="'unitaDiMisura-' + i" formControlName="unitaDiMisura">
+                            <option value="" disabled selected>Unità</option>
+                            <option value="gr">gr</option>
+                            <option value="kg">kg</option>
+                            <option value="ml">ml</option>
+                            <option value="l">l</option>
+                            <option value="q.b.">q.b.</option>
+                            <option value="pezzo">pezzo</option>
+                            <option value="cucchiaino">cucchiaino</option>
+                            <option value="cucchiaio">cucchiaio</option>
+                        </select>
+                    </div>
+
+                    @if (ingredientiFormArray.length > 1) {
+                    <button type="button" class="btn-rimuovi" (click)="rimuoviSelect(i)" title="Rimuovi ingrediente">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                    }
+                </div>
+
+                @if (item.invalid && (item.dirty || item.touched)) {
+                <div class="error riga-errore">
+                    <small>Compilare tutti i campi dell'ingrediente correttamente.</small>
+                </div>
+                }
+                }
+            </div>
+            <button type="button" class="btn-aggiungi" (click)="aggiungiNuovaSelectIngrediente()">+ Aggiungi
+                Ingrediente</button>
+        </div>
+
+        <hr class="form-divider">
+
+        <div class="form-section">
+            <h3>Categorie</h3>
+            <div formArrayName="categorie">
+                @for (item of categorieFormArray.controls; track item; let i = $index) {
+                <div class="riga-dinamica" [formGroupName]="i">
+                    <div class="campo-frazione largo">
+                        <label [for]="'categoria-' + i">Categoria Ricetta</label>
+                        <select [id]="'categoria-' + i" formControlName="nomeCategoriaRicetta">
+                            <option value="" disabled selected>Seleziona una categoria</option>
+                            @for(categoria of listaCategorie; track categoria.id){
+                            <option [value]="categoria.nomeCategoriaRicetta">{{categoria.nomeCategoriaRicetta}}</option>
+                            }
+                        </select>
+                    </div>
+
+                    @if (categorieFormArray.length > 1) {
+                    <button type="button" class="btn-rimuovi" (click)="rimuoviSelectCategoria(i)"
+                        title="Rimuovi categoria">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                    }
+                </div>
+
+                @if (item.invalid && (item.dirty || item.touched)) {
+                <div class="error riga-errore">
+                    <small>Selezionare una categoria valida.</small>
+                </div>
+                }
+                }
+            </div>
+            <button type="button" class="btn-aggiungi" (click)="aggiungiNuovaSelectCategoria()">+ Aggiungi
+                Categoria</button>
+        </div>
+
+        <hr class="form-divider">
+
+        <div class="form-section">
+            <h3>Fasi di Preparazione</h3>
+            <div formArrayName="fasiPreparazione">
+                @for (item of FasiPreparazioneFormArray.controls; track item; let i = $index) {
+                <div class="riga-dinamica" [formGroupName]="i">
+                    <div class="campo-frazione largo">
+                        <label [for]="'fase-testo-' + i">Descrizione Fase</label>
+                        <input type="text" [id]="'fase-testo-' + i" formControlName="testo"
+                            placeholder="Es. Tagliare le verdure...">
+                    </div>
+
+                    <div class="campo-frazione">
+                        <label [for]="'fase-media-' + i">Media URL (Opzionale)</label>
+                        <input type="text" [id]="'fase-media-' + i" formControlName="media" placeholder="https://...">
+                    </div>
+
+                    @if (FasiPreparazioneFormArray.length > 1) {
+                    <button type="button" class="btn-rimuovi" (click)="rimuoviSelectFasiPreparazione(i)"
+                        title="Rimuovi fase">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                    }
+                </div>
+
+                @if (item.invalid && (item.dirty || item.touched)) {
+                <div class="error riga-errore">
+                    <small>Il testo della fase di preparazione è obbligatorio.</small>
+                </div>
+                }
+                }
+            </div>
+            <button type="button" class="btn-aggiungi" (click)="aggiungiNuovaSelectFasiPreparazione()">+ Aggiungi
+                Fase</button>
+        </div>
+
+        <button type="submit" class="btn-submit" [disabled]="newRecipeForm.invalid">Invia Ricetta</button>
+    </form>
+</div>

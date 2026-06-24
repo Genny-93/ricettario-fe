@@ -43,5 +43,9 @@ export class Header {
     });
   }
 
+  goToNewRecipe(): void {
+    this.router.navigateByUrl('new-recipe');
+  }
+
 
 }
