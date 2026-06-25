@@ -166,6 +166,12 @@
     text-decoration: underline;        /* Mostra la sottolineatura solo al passaggio del mouse */
 }
 
+.logo-link {
+  text-decoration: none; /* Rimuove la sottolineatura */
+  color: inherit;        /* Mantiene i colori originali del testo */
+  display: inline-block; /* O 'block', a seconda del layout desiderato */
+}
+
 /* MEDIA QUERIES (DESIGN RESPONSIVO PER TABLET E SMARTPHONE) */
 
 /* --- TABLET: Schermi inferiori a 900px --- */

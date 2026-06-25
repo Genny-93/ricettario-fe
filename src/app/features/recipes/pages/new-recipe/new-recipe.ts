@@ -6,11 +6,11 @@ import { IngredienteOutputDto } from '../../../../shared/models/ingrediente-outp
 import { CategoriaOutputDto } from '../../../../shared/models/categoria-output-dto';
 import { CategoriaService } from '../../../../shared/services/categoria';
 import { RecipeInputDto } from '../../../../shared/models/recipe-input-dto';
-import { MatIcon } from "@angular/material/icon";
+import { MatIconModule } from "@angular/material/icon";
 
 @Component({
   selector: 'app-new-recipe',
-  imports: [ReactiveFormsModule, FormsModule, MatIcon],
+  imports: [ReactiveFormsModule, FormsModule, MatIconModule],
   templateUrl: './new-recipe.html',
   styleUrl: './new-recipe.css',
 })
