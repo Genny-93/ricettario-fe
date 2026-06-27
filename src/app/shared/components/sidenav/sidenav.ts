@@ -4,6 +4,7 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule, MatNavList } from "@angular/material/list";
 import { MatIcon, MatIconModule } from "@angular/material/icon";
 import { RouterLink } from '@angular/router';
+import { Authentication } from '../../../core/auth/services/authentication';
 
 @Component({
   selector: 'app-sidenav',
@@ -12,6 +13,9 @@ import { RouterLink } from '@angular/router';
   styleUrl: './sidenav.css',
 })
 export class Sidenav {
+
+  constructor(public authService: Authentication) { }
+
   // Canale di uscita per dire al padre di chiudere
   closeClick = output<void>();
 

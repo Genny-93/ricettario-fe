@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { Login } from './features/auth/pages/login/login';
-import { RicettePerCategoriaPage } from './features/recipes/pages/ricette-per-categoria-page/ricette-per-categoria-page';
+import { RicetteSearch } from './features/recipes/pages/ricette-search/ricette-search';
 import { Homepage } from './features/dashboard/pages/homepage/homepage';
 import { Register } from './features/auth/pages/register/register';
 import { ForgotPassword } from './features/auth/pages/forgot-password/forgot-password';
@@ -16,7 +16,7 @@ export const routes: Routes = [
 
     { path: 'home', component: Homepage },
 
-    { path: 'recipe-by-category/:categoryName', component: RicettePerCategoriaPage, pathMatch: 'full' },
+    { path: 'recipe-search', component: RicetteSearch, pathMatch: 'full' },
 
     { path: 'register', component: Register },
 

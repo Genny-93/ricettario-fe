@@ -17,7 +17,7 @@ import { MatListModule } from '@angular/material/list';
 export class Header {
 
 
-  constructor(private authService: Authentication,
+  constructor(public authService: Authentication,
     private router: Router) {
   }
 

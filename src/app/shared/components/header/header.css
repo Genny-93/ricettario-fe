@@ -172,6 +172,19 @@
   display: inline-block; /* O 'block', a seconda del layout desiderato */
 }
 
+.welcome-text {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--color-text-inverse);
+    margin-right: 12px; /* Spazio tra il testo e l'icona del profilo */
+    white-space: nowrap; /* Impedisce al testo di andare a capo */
+}
+
+.welcome-text strong {
+    font-weight: 700;
+    color: var(--color-secondary); /* O un colore di accento che risalti sulla navbar */
+}
+
 /* MEDIA QUERIES (DESIGN RESPONSIVO PER TABLET E SMARTPHONE) */
 
 /* --- TABLET: Schermi inferiori a 900px --- */
@@ -214,6 +227,9 @@
 
 /* --- SMARTPHONE: Schermi inferiori a 560px --- */
 @media (max-width: 560px) {
+    .welcome-text {
+        display: none;
+    }
     .box-header {
         grid-template-columns: auto auto; /* Riduce la griglia a sole due colonne */
         /* Cambia il layout disponendo gli elementi su due righe:

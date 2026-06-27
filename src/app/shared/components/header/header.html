@@ -7,11 +7,12 @@
       </button>
 
       <a routerLink="/home" class="logo-link">
-      <div class="logo" aria-label="Ricettario">
-        <mat-icon class="logo-icon">local_dining</mat-icon>
-        <span class="logo-text">RICETTARIO</span>
-      </div></a>
-      
+        <div class="logo" aria-label="Ricettario">
+          <mat-icon class="logo-icon">local_dining</mat-icon>
+          <span class="logo-text">RICETTARIO</span>
+        </div>
+      </a>
+
     </div>
 
     <div class="header-center">
@@ -28,6 +29,9 @@
     </div>
 
     <div class="header-right">
+      @if (authService.currentUser()) {
+        <span class="welcome-text">Benvenuto, <strong>{{ authService.currentUser()?.username }}</strong></span>
+      }
       <button mat-icon-button class="account-button" type="button" aria-label="Apri menu utente"
         [matMenuTriggerFor]="accountMenu">
         <mat-icon>account_circle</mat-icon>
@@ -53,10 +57,9 @@
   </div>
 
   <nav class="category-nav" aria-label="Categorie ricette">
-    <a routerLink="/recipe-by-category/Antipasto">Antipasti</a>
-    <a routerLink="/recipe-by-category/Primo Piatto">Primi</a>
-    <a routerLink="/recipe-by-category/Secondo Piatto">Secondi</a>
-    <a routerLink="/recipe-by-category/Dolce">Dolci</a>
-    <!--<a href="#">Altro...</a>-->
+    <a routerLink="/recipe-search" [queryParams]="{ categoryName: 'Antipasto'}">Antipasti</a>
+    <a routerLink="/recipe-search" [queryParams]="{ categoryName: 'Primo Piatto'}">Primi</a>
+    <a routerLink="/recipe-search" [queryParams]="{ categoryName: 'Secondo Piatto'}">Secondi</a>
+    <a routerLink="/recipe-search" [queryParams]="{ categoryName: 'Dolce'}">Dolci</a>
   </nav>
 </header>

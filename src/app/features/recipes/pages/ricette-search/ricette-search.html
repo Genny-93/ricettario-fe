@@ -1,0 +1,7 @@
+<div class="container-cards-cat">
+    <h1 class="title">{{title}}</h1>
+    
+    @for(ricetta of recipesList; track ricetta.id){
+    <app-ricette-categoria-card [title]="title" [recipe]="ricetta" (click)="goToRecipe(ricetta.id)"></app-ricette-categoria-card>
+    }
+</div>

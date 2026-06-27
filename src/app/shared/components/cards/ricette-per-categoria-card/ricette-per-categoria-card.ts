@@ -15,6 +15,6 @@ export class RicetteCategoriaCard {
   //TODO da cambiare il tipo di variabile input
   @Input() recipe?: RecipeCardModel;
 
-  @Input() categoryName? : string;
+  @Input() title? : string;
 
 }

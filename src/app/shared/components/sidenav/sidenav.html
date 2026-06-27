@@ -12,10 +12,12 @@
     <span class="mdc-list-item__primary-text sidebar-text">Home</span>
   </a>
 
-  <a mat-list-item href="#" class="sidebar-item">
+  @if (authService.currentUser()?.id) {
+  <a mat-list-item routerLink="/recipe-search" [queryParams]="{ userId: authService.currentUser()?.id}"
+    class="sidebar-item">
     <mat-icon matListItemIcon class="sidebar-icon">restaurant_menu</mat-icon>
     <span class="mdc-list-item__primary-text sidebar-text">Le mie ricette</span>
-  </a>
+  </a>}
 
   <a mat-list-item href="#" class="sidebar-item">
     <mat-icon matListItemIcon class="sidebar-icon">favorite</mat-icon>
