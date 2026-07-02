@@ -27,11 +27,13 @@ export class RicetteSearch implements OnInit {
 
     this.activatedRoute.queryParamMap.subscribe(queryParams => {
       const categoria = queryParams.get('categoryName');
-      const userId = queryParams.get('userId');
-      this.valorizzaTitle(categoria, userId);
+      const authorId = queryParams.get('authorId');
+      const favorites = queryParams.get('favorites');
+      this.valorizzaTitle(categoria, authorId, favorites);
       const filtri = {
         categoryName: categoria,
-        userId: userId
+        authorId: authorId,
+        favorites: favorites
       };
       this.recipeService.searchRecipes(filtri).subscribe({
         next: (data) => {
@@ -43,8 +45,6 @@ export class RicetteSearch implements OnInit {
       })
 
     });
-    const idUser = this.authService.currentUser()?.id;
-    
 
   }
 
@@ -62,12 +62,13 @@ export class RicetteSearch implements OnInit {
     });
   });*/
 
-  valorizzaTitle(categoryName?: string | null, userId?: string | null): void {
+  valorizzaTitle(categoryName?: string | null, authorId?: string | null, favorites?: string | null): void {
     if (categoryName) {
       this.title = categoryName;
-    } else if (userId) {
+    } else if (authorId) {
       this.title = `Le mie Ricette`; // Oppure "Ricette dell'utente"
-    } else {
+    } else if (favorites) { this.title = 'La mia lista delle Ricette Preferite' }
+    else {
       this.title = 'Tutte le Ricette'; // Titolo di fallback se non ci sono parametri
     }
   }

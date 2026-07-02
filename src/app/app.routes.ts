@@ -7,6 +7,7 @@ import { ForgotPassword } from './features/auth/pages/forgot-password/forgot-pas
 import { ChangePassword } from './features/auth/pages/change-password/change-password';
 import { RecipePage } from './features/recipes/pages/recipe-page/recipe-page';
 import { NewRecipe } from './features/recipes/pages/new-recipe/new-recipe';
+import { authGuard } from './core/auth/guards/auth.guard';
 
 export const routes: Routes = [
 
@@ -14,9 +15,9 @@ export const routes: Routes = [
 
     { path: 'login', component: Login },
 
-    { path: 'home', component: Homepage },
+    { path: 'home', component: Homepage, canActivate: [authGuard] },
 
-    { path: 'recipe-search', component: RicetteSearch, pathMatch: 'full' },
+    { path: 'recipe-search', component: RicetteSearch, canActivate: [authGuard], pathMatch: 'full' },
 
     { path: 'register', component: Register },
 
@@ -24,8 +25,8 @@ export const routes: Routes = [
 
     { path: 'reset-password', component: ChangePassword },
 
-    { path: 'recipe/:id', component: RecipePage, pathMatch: 'full' },
+    { path: 'recipe/:id', component: RecipePage, canActivate: [authGuard], pathMatch: 'full' },
 
-    { path: 'new-recipe', component: NewRecipe, pathMatch: 'full' }
+    { path: 'new-recipe', component: NewRecipe, canActivate: [authGuard], pathMatch: 'full' }
 
 ];

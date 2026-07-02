@@ -19,7 +19,7 @@ export class Recipe {
 
   private baseUrl = 'http://localhost:8080/recipes';
 
-  searchRecipes(filters: { categoryName?: string | null, userId?: string | null }): Observable<RecipeCardModel[]> {
+  searchRecipes(filters: { categoryName?: string | null, authorId?: string | null, favorites?: string | null }): Observable<RecipeCardModel[]> {
     let parametri = new HttpParams();
     let url = "";
     const idUser = this.authService.currentUser()?.id;
@@ -31,9 +31,15 @@ export class Recipe {
       }
       url = "/search-by-category";
     }
-    else if (filters.userId) {
-      parametri = parametri.set('userId', filters.userId);
+    else if (filters.authorId) {
+      parametri = parametri.set('authorId', filters.authorId);
       url = "/search-by-user";
+    }
+    else if (filters.favorites === 'true') {
+      if (idUser) {
+        parametri = parametri.set('idUser', idUser.toString());
+      }
+      url = "/find-favorite";
     }
     else {
       if (idUser) {

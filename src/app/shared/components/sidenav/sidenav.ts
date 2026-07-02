@@ -19,6 +19,7 @@ export class Sidenav {
   // Canale di uscita per dire al padre di chiudere
   closeClick = output<void>();
 
+
   onCloseClick() {
     this.closeClick.emit();
   }
