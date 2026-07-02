@@ -5,6 +5,8 @@ import { Observable } from 'rxjs';
 import { RecipeCardModel } from '../../../shared/models/recipe-card';
 import { RecipeModel } from '../../../shared/models/recipe';
 import { CategoriaOutputDto } from '../../../shared/models/categoria-output-dto';
+import { RicetteCategoriaCard } from '../../../shared/components/cards/ricette-per-categoria-card/ricette-per-categoria-card';
+import { Authentication } from '../../../core/auth/services/authentication';
 
 @Injectable({
   providedIn: 'root',
@@ -13,25 +15,33 @@ export class Recipe {
 
   //al posto dell'injection tramite costruttore
   private http = inject(HttpClient);
+  private authService = inject(Authentication);
 
   private baseUrl = 'http://localhost:8080/recipes';
 
-  private url = "";
-
   searchRecipes(filters: { categoryName?: string | null, userId?: string | null }): Observable<RecipeCardModel[]> {
     let parametri = new HttpParams();
+    let url = "";
+    const idUser = this.authService.currentUser()?.id;
 
     if (filters.categoryName) {
       parametri = parametri.set('categoryName', filters.categoryName);
-      this.url = "/search-by-category";
+      if (idUser) {
+        parametri = parametri.set('idUser', idUser);
+      }
+      url = "/search-by-category";
     }
-    if (filters.userId) {
+    else if (filters.userId) {
       parametri = parametri.set('userId', filters.userId);
-      this.url="/search-by-user";
+      url = "/search-by-user";
     }
-    else { }
-    console.log(`${this.baseUrl}`);
-    return this.http.get<RecipeCardModel[]>(`${this.baseUrl}${this.url}`, { params: parametri, withCredentials: true });
+    else {
+      if (idUser) {
+        parametri = parametri.set('idUser', idUser.toString());
+      }
+      url = "/cards"
+    }
+    return this.http.get<RecipeCardModel[]>(`${this.baseUrl}${url}`, { params: parametri, withCredentials: true });
   }
 
   getAllRecipes(): Observable<RecipeCardModel[]> {
@@ -57,5 +67,28 @@ export class Recipe {
     return this.http.post<RecipeModel>(`${this.baseUrl}`, recipe,
       { withCredentials: true }
     );
+  }
+
+  addFavoriteRecipes(idUser: number, idRicetta: number): Observable<boolean> {
+    const params = new HttpParams()
+      .set('idUser', idUser)
+      .set('idRicetta', idRicetta);
+
+    return this.http.post<boolean>(`${this.baseUrl}/add-favorite`, null, { params: params, withCredentials: true });
+  }
+
+
+  findFavoriteRecipes(idUser: number): Observable<RecipeCardModel[]> {
+    const params = new HttpParams().set('idUser', idUser);
+
+    return this.http.get<RecipeCardModel[]>(`${this.baseUrl}/find-favorite`, { params: params, withCredentials: true });
+  }
+
+  deleteFavoriteRecipe(idUser: number, idRicetta: number): Observable<boolean> {
+    const params = new HttpParams()
+      .set('idUser', idUser)
+      .set('idRicetta', idRicetta);
+
+    return this.http.delete<boolean>(`${this.baseUrl}/delete-favorite`, { params: params, withCredentials: true });
   }
 }

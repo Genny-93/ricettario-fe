@@ -23,8 +23,13 @@ export class Homepage implements OnInit {
 
 
   getRecipes(): void {
+    
+    const filtri = {
+      categoryName: null,
+      userId: null
+    };
 
-    this.recipeService.getAllRecipes().subscribe({
+    this.recipeService.searchRecipes(filtri).subscribe({
       next: (datiRicevuti) => {
         this.listaRicette = datiRicevuti;
         console.log('Ricette caricate:', datiRicevuti);

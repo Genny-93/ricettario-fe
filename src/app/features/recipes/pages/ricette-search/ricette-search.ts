@@ -3,6 +3,7 @@ import { Recipe } from '../../services/recipe';
 import { RecipeCardModel } from '../../../../shared/models/recipe-card';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RicetteCategoriaCard } from '../../../../shared/components/cards/ricette-per-categoria-card/ricette-per-categoria-card';
+import { Authentication } from '../../../../core/auth/services/authentication';
 
 @Component({
   selector: 'app-ricette-search',
@@ -15,8 +16,9 @@ export class RicetteSearch implements OnInit {
   title: string = '';
   userId: string = "";
   recipesList: RecipeCardModel[] = [];
+  favoriteRecipes: RecipeCardModel[] = [];
 
-  constructor(private recipeService: Recipe, private activatedRoute: ActivatedRoute, private route: Router) { }
+  constructor(private recipeService: Recipe, private activatedRoute: ActivatedRoute, private route: Router, private authService: Authentication) { }
 
 
 
@@ -41,21 +43,24 @@ export class RicetteSearch implements OnInit {
       })
 
     });
+    const idUser = this.authService.currentUser()?.id;
+    
 
-    /*
-    this.activatedRoute.params.subscribe(parametro => {
-      this.categoryName = parametro['categoryName'];
-      console.log(this.categoryName);
-      this.recipeService.getRecipesByCategory(this.categoryName).subscribe({
-        next: (ricette) => {
-          this.recipesList = ricette;
-        },
-        error: (err) => {
-          console.log(err);
-        }
-      });
-    });*/
   }
+
+  /*
+  this.activatedRoute.params.subscribe(parametro => {
+    this.categoryName = parametro['categoryName'];
+    console.log(this.categoryName);
+    this.recipeService.getRecipesByCategory(this.categoryName).subscribe({
+      next: (ricette) => {
+        this.recipesList = ricette;
+      },
+      error: (err) => {
+        console.log(err);
+      }
+    });
+  });*/
 
   valorizzaTitle(categoryName?: string | null, userId?: string | null): void {
     if (categoryName) {

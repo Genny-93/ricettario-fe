@@ -2,8 +2,16 @@
 
     <div class="image-wrapper">
         <img class="recipe-image" [src]="recipe?.imgPrincipale" alt="Immagine ricetta">
-        <button mat-icon-button class="favorite-button" title="Aggiungi ai preferiti">
-            <mat-icon>favorite</mat-icon> </button>
+        @if(recipe?.isFavorite){
+        <button mat-icon-button class="favorite-button" title="Aggiungi ai preferiti"
+            (click)="deleteFavorite(recipe?.id); $event.stopPropagation()">
+            <mat-icon>favorite</mat-icon> </button>}
+        @else{
+        <button mat-icon-button class="favorite-button" title="Elimina dai preferiti"
+            (click)="addFavorite(recipe?.id); $event.stopPropagation()">
+            <mat-icon>favorite_border</mat-icon>
+        </button>
+        }
     </div>
 
 

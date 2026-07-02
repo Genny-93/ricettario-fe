@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
-import { catchError, Observable, of, tap } from 'rxjs';
+import { catchError, Observable, of, switchMap, tap } from 'rxjs';
 import { LoginRequest } from '../models/login-request';
 import { RegisterRequestModel } from '../models/register-request';
 import { UserOutputDto } from '../models/user-output-dto';
@@ -22,7 +22,7 @@ export class Authentication {
       withCredentials: true,
       responseType: 'text'
     }).pipe(
-      tap(() => this.checkSession().subscribe())
+      switchMap(() => this.checkSession())
     );
   }
 
@@ -30,16 +30,25 @@ export class Authentication {
     return this.http.post(`${this.baseUrl}/auth/logout`, {}, {
       withCredentials: true,
       responseType: 'text'
-    });
-
+    }).pipe(
+      tap(() => {
+        this.currentUser.set(null);
+        console.log(this.currentUser());
+      })
+    );
   }
 
   checkSession(): Observable<UserOutputDto | null> {
     return this.http.get<UserOutputDto>(`${this.baseUrl}/auth/me`, { withCredentials: true }).pipe(
+      // Il server risponde con i dati dell'utente (user).
+      // tap "intercetta" l'oggetto user e lo salva nel Signal per aggiornare l'app,
+      // dopodiché fa passare l'oggetto user intatto verso l'esterno.
       tap(user => this.currentUser.set(user)),
+      // CASO DI ERRORE:
       catchError(() => {
         this.currentUser.set(null); // Azzera la variabile per sicurezza
-        return of(null);         // <--- Il pezzo "strano" ma obbligatorio
+        // Trasforma l'errore in un flusso sicuro che emette 'null'
+        return of(null);
       })
     );
   }

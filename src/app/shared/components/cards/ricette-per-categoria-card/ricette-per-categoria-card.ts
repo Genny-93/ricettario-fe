@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
 import { RecipeCardModel } from '../../../models/recipe-card';
+import { Recipe } from '../../../../features/recipes/services/recipe';
+import { Authentication } from '../../../../core/auth/services/authentication';
 
 
 @Component({
@@ -15,6 +17,54 @@ export class RicetteCategoriaCard {
   //TODO da cambiare il tipo di variabile input
   @Input() recipe?: RecipeCardModel;
 
-  @Input() title? : string;
+  @Input() title?: string;
+
+
+  constructor(private recipeService: Recipe, private authService: Authentication) { }
+
+  addFavorite(idRicetta?: number) {
+    const idUser = this.authService.currentUser()?.id;
+
+    if (!idUser || !idRicetta) {
+      console.warn("Impossibile aggiungere ai preferiti: Dati mancanti", { idUser, idRicetta });
+      return;
+    }
+
+    this.recipeService.addFavoriteRecipes(idUser, idRicetta).subscribe({
+      next: (valBooleano) => {
+        alert("Ricetta aggiunta ai preferiti");
+        if (this.recipe) {
+          this.recipe.isFavorite = true;
+        }
+      },
+      error: (err) => {
+        console.log(err.error);
+      }
+    });
+
+  }
+
+  deleteFavorite(idRicetta?: number) {
+    const idUser = this.authService.currentUser()?.id;
+    if (!idUser || !idRicetta) {
+      console.warn("Impossibile aggiungere ai preferiti: Dati mancanti", { idUser, idRicetta });
+      return;
+    }
+
+    this.recipeService.deleteFavoriteRecipe(idUser, idRicetta).subscribe({
+      next: (valBooleano) => {
+        alert("Ricetta eliminata dai preferiti");
+        if (this.recipe) {
+          this.recipe.isFavorite = false;
+        }
+      },
+      error: (err) => {
+        console.log(err.error);
+
+      }
+    });
+
+
+  }
 
 }
