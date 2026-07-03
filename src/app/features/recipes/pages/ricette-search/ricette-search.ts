@@ -21,8 +21,6 @@ export class RicetteSearch implements OnInit {
   constructor(private recipeService: Recipe, private activatedRoute: ActivatedRoute, private route: Router, private authService: Authentication) { }
 
 
-
-
   ngOnInit(): void {
 
     this.activatedRoute.queryParamMap.subscribe(queryParams => {
@@ -47,20 +45,6 @@ export class RicetteSearch implements OnInit {
     });
 
   }
-
-  /*
-  this.activatedRoute.params.subscribe(parametro => {
-    this.categoryName = parametro['categoryName'];
-    console.log(this.categoryName);
-    this.recipeService.getRecipesByCategory(this.categoryName).subscribe({
-      next: (ricette) => {
-        this.recipesList = ricette;
-      },
-      error: (err) => {
-        console.log(err);
-      }
-    });
-  });*/
 
   valorizzaTitle(categoryName?: string | null, authorId?: string | null, favorites?: string | null): void {
     if (categoryName) {

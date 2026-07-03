@@ -22,8 +22,6 @@ export class App implements OnInit {
   @ViewChild(MatSidenavContainer) sidenavContainer!: MatSidenavContainer;
 
   ngOnInit(): void {
-    this.authService.checkSession().subscribe();
-
 
     //Codice per resettare lo scroll del contenitore di Angular Material
     this.router.events.pipe(
