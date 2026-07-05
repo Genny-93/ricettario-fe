@@ -22,28 +22,28 @@ export class Recipe {
   searchRecipes(filters: { categoryName?: string | null, authorId?: string | null, favorites?: string | null }): Observable<RecipeCardModel[]> {
     let parametri = new HttpParams();
     let url = "";
-    const idUser = this.authService.currentUser()?.id;
+    const username = this.authService.currentUser();
 
     if (filters.categoryName) {
       parametri = parametri.set('categoryName', filters.categoryName);
-      if (idUser) {
-        parametri = parametri.set('idUser', idUser);
+      if (username) {
+        parametri = parametri.set('username', username);
       }
       url = "/search-by-category";
     }
     else if (filters.authorId) {
-      parametri = parametri.set('authorId', filters.authorId);
+      parametri = parametri.set('username', filters.authorId);
       url = "/search-by-user";
     }
     else if (filters.favorites === 'true') {
-      if (idUser) {
-        parametri = parametri.set('idUser', idUser.toString());
+      if (username) {
+        parametri = parametri.set('username', username.toString());
       }
       url = "/find-favorite";
     }
     else {
-      if (idUser) {
-        parametri = parametri.set('idUser', idUser.toString());
+      if (username) {
+        parametri = parametri.set('username', username.toString());
       }
       url = "/cards"
     }
@@ -75,24 +75,24 @@ export class Recipe {
     );
   }
 
-  addFavoriteRecipes(idUser: number, idRicetta: number): Observable<boolean> {
+  addFavoriteRecipes(username: string, idRicetta: number): Observable<boolean> {
     const params = new HttpParams()
-      .set('idUser', idUser)
+      .set('username', username)
       .set('idRicetta', idRicetta);
 
     return this.http.post<boolean>(`${this.baseUrl}/add-favorite`, null, { params: params, withCredentials: true });
   }
 
 
-  findFavoriteRecipes(idUser: number): Observable<RecipeCardModel[]> {
-    const params = new HttpParams().set('idUser', idUser);
+  findFavoriteRecipes(username: string): Observable<RecipeCardModel[]> {
+    const params = new HttpParams().set('username', username);
 
     return this.http.get<RecipeCardModel[]>(`${this.baseUrl}/find-favorite`, { params: params, withCredentials: true });
   }
 
-  deleteFavoriteRecipe(idUser: number, idRicetta: number): Observable<boolean> {
+  deleteFavoriteRecipe(username: string, idRicetta: number): Observable<boolean> {
     const params = new HttpParams()
-      .set('idUser', idUser)
+      .set('username', username)
       .set('idRicetta', idRicetta);
 
     return this.http.delete<boolean>(`${this.baseUrl}/delete-favorite`, { params: params, withCredentials: true });

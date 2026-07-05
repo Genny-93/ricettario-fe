@@ -30,7 +30,7 @@
 
     <div class="header-right">
       @if (authService.currentUser()) {
-        <span class="welcome-text">Benvenuto, <strong>{{ authService.currentUser()?.username }}</strong></span>
+        <span class="welcome-text">Benvenuto, <strong>{{ authService.currentUser() }}</strong></span>
       }
       <button mat-icon-button class="account-button" type="button" aria-label="Apri menu utente"
         [matMenuTriggerFor]="accountMenu">

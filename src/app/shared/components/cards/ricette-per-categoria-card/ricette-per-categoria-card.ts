@@ -23,14 +23,14 @@ export class RicetteCategoriaCard {
   constructor(private recipeService: Recipe, private authService: Authentication) { }
 
   addFavorite(idRicetta?: number) {
-    const idUser = this.authService.currentUser()?.id;
+    const username = this.authService.currentUser();
 
-    if (!idUser || !idRicetta) {
-      console.warn("Impossibile aggiungere ai preferiti: Dati mancanti", { idUser, idRicetta });
+    if (!username || !idRicetta) {
+      console.warn("Impossibile aggiungere ai preferiti: Dati mancanti", { username, idRicetta });
       return;
     }
 
-    this.recipeService.addFavoriteRecipes(idUser, idRicetta).subscribe({
+    this.recipeService.addFavoriteRecipes(username, idRicetta).subscribe({
       next: (valBooleano) => {
         alert("Ricetta aggiunta ai preferiti");
         if (this.recipe) {
@@ -45,13 +45,13 @@ export class RicetteCategoriaCard {
   }
 
   deleteFavorite(idRicetta?: number) {
-    const idUser = this.authService.currentUser()?.id;
-    if (!idUser || !idRicetta) {
-      console.warn("Impossibile aggiungere ai preferiti: Dati mancanti", { idUser, idRicetta });
+    const username = this.authService.currentUser();
+    if (!username || !idRicetta) {
+      console.warn("Impossibile aggiungere ai preferiti: Dati mancanti", { username, idRicetta });
       return;
     }
 
-    this.recipeService.deleteFavoriteRecipe(idUser, idRicetta).subscribe({
+    this.recipeService.deleteFavoriteRecipe(username, idRicetta).subscribe({
       next: (valBooleano) => {
         alert("Ricetta eliminata dai preferiti");
         if (this.recipe) {

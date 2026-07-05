@@ -12,16 +12,16 @@
     <span class="mdc-list-item__primary-text sidebar-text">Home</span>
   </a>
 
-  @if (authService.currentUser()?.id) {
-  <a mat-list-item routerLink="/recipe-search" [queryParams]="{ authorId: authService.currentUser()?.id}"
+  @if (authService.currentUser()) {
+  <a mat-list-item routerLink="/recipe-search" [queryParams]="{ username: authService.currentUser()}"
     class="sidebar-item">
     <mat-icon matListItemIcon class="sidebar-icon">restaurant_menu</mat-icon>
     <span class="mdc-list-item__primary-text sidebar-text">Le mie ricette</span>
   </a>}
 
-  @if (authService.currentUser()?.id) {
+  @if (authService.currentUser()) {
   <a mat-list-item routerLink="/recipe-search"
-    [queryParams]="{favorites: 'true', idUser: authService.currentUser()?.id}" class="sidebar-item">
+    [queryParams]="{favorites: 'true', username: authService.currentUser()}" class="sidebar-item">
     <mat-icon matListItemIcon class="sidebar-icon">favorite</mat-icon>
     <span class="mdc-list-item__primary-text sidebar-text">Preferiti</span>
   </a>}

@@ -11,7 +11,7 @@ import { ChangePasswordModel } from '../models/change-password-request';
 })
 export class Authentication {
 
-  public currentUser = signal<UserOutputDto | null>(null);
+  public currentUser = signal<string | null>(null);
 
   private baseUrl = 'http://localhost:8080';
 
@@ -38,12 +38,12 @@ export class Authentication {
     );
   }
 
-  checkSession(): Observable<UserOutputDto | null> {
-    return this.http.get<UserOutputDto>(`${this.baseUrl}/auth/me`, { withCredentials: true }).pipe(
+  checkSession(): Observable<string | null> {
+    return this.http.get(`${this.baseUrl}/auth/me`, { withCredentials: true, responseType: 'text' }).pipe(
       // Il server risponde con i dati dell'utente (user).
       // tap "intercetta" l'oggetto user e lo salva nel Signal per aggiornare l'app,
       // dopodiché fa passare l'oggetto user intatto verso l'esterno.
-      tap(user => this.currentUser.set(user)),
+      tap(username => this.currentUser.set(username)),
       // CASO DI ERRORE:
       catchError(() => {
         this.currentUser.set(null); // Azzera la variabile per sicurezza
