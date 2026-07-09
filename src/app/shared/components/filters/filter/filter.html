@@ -1,0 +1,125 @@
+<div class="filtri-panel">
+
+    <!-- SEZIONE CATEGORIA -->
+    <div class="filtro-sezione">
+        <mat-form-field appearance="outline">
+            <mat-label>Categoria</mat-label>
+            <mat-select [(ngModel)]="category">
+                <mat-option [value]="null">Tutte le categorie</mat-option>
+                @for(categoria of categories; track categoria.id){
+                <mat-option [value]="categoria.nomeCategoriaRicetta">{{categoria.nomeCategoriaRicetta}}</mat-option>}
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <!-- SEZIONE TEMPO DI COTTURA -->
+    <div class="filtro-sezione">
+
+        <mat-slide-toggle [checked]="filtroTempoAttivo" (change)="onToggleTempo($event.checked)">
+            Filtra per tempo di cottura
+        </mat-slide-toggle>
+
+        @if (filtroTempoAttivo) {
+        <label>
+            Tempo di cottura: {{ minTempoDiCottura }} min - {{ maxTempoDiCottura === TEMPO_MAX_SLIDER ?
+            maxTempoDiCottura + '+' : maxTempoDiCottura + '' }} min
+        </label>
+
+        <mat-slider min="0" [max]="TEMPO_MAX_SLIDER" step="5" discrete showTickMarks>
+            <input matSliderStartThumb [(value)]="minTempoDiCottura">
+            <input matSliderEndThumb [(value)]="maxTempoDiCottura">
+        </mat-slider>}
+
+    </div>
+
+    <!-- SEZIONE DIFFICOLTÀ -->
+    <div class="filtro-sezione">
+
+        <label>Difficoltà</label>
+
+        <mat-button-toggle-group [(ngModel)]="difficolta">
+            <mat-button-toggle [value]="null">
+                Tutte
+            </mat-button-toggle>
+            <mat-button-toggle value="FACILE">
+                Facile
+            </mat-button-toggle>
+            <mat-button-toggle value="MEDIO">
+                Medio
+            </mat-button-toggle>
+            <mat-button-toggle value="DIFFICILE">
+                Difficile
+            </mat-button-toggle>
+            <mat-button-toggle value="ESPERTO">
+                Esperto
+            </mat-button-toggle>
+        </mat-button-toggle-group>
+
+    </div>
+
+    <!-- SEZIONE VALUTAZIONE -->
+    <div class="filtro-sezione">
+        <mat-form-field appearance="outline">
+            <mat-label>Valutazione minima</mat-label>
+            <mat-select [(ngModel)]="valutazioneMedia">
+                <mat-select-trigger>
+                @if (valutazioneMedia) {
+                    <div class="opzione-valutazione">
+                        <span>{{ valutazioneMedia === 5.0 ? '5' : valutazioneMedia + '+' }}</span>
+                        <mat-icon>star</mat-icon>
+                    </div>
+                } @else {
+                    <span>Tutte le valutazioni</span>
+                }
+            </mat-select-trigger>
+                <mat-option [value]="null">Tutte le valutazioni</mat-option>
+                <mat-option [value]="1.0">
+                    <div class="opzione-valutazione">
+                    <span>1+</span>
+                    <mat-icon>star</mat-icon>
+                </div></mat-option>
+                <mat-option [value]="2.0">
+                    <div class="opzione-valutazione">
+                    <span>2+</span>
+                    <mat-icon>star</mat-icon>
+                </div>
+                </mat-option>
+                <mat-option [value]="3.0">
+                    <div class="opzione-valutazione">
+                    <span>3+</span>
+                    <mat-icon>star</mat-icon>
+                </div>
+                </mat-option>
+                <mat-option [value]="4.0">
+                    <div class="opzione-valutazione">
+                    <span>4+</span>
+                    <mat-icon>star</mat-icon>
+                </div>
+                </mat-option>
+                <mat-option [value]="5.0">
+                    <div class="opzione-valutazione">
+                    <span>5</span>
+                    <mat-icon>star</mat-icon>
+                </div>
+                </mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+
+    <!-- SEZIONE ORDINAMENTO -->
+    <div class="filtro-sezione">
+        <mat-slide-toggle [(ngModel)]="order">
+            Inverti ordine dei risultati
+        </mat-slide-toggle>
+    </div>
+
+    <!-- AZIONI: Pulsante per applicare i filtri e pulsante di reset -->
+    <div class="filtro-azioni">
+        <!-- Questo bottone avvia la ricerca al click -->
+        <button type="button" class="btn-applica" (click)="applicaFiltri()">
+            Applica Filtri
+        </button>
+
+        <!-- PULSANTE DI RESET -->
+        <button type="button" class="btn-reset" (click)="resetFiltri()">Ripristina filtri</button>
+    </div>

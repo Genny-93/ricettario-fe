@@ -4,10 +4,11 @@ import { RecipeCardModel } from '../../../../shared/models/recipe-card';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RicetteCategoriaCard } from '../../../../shared/components/cards/ricette-per-categoria-card/ricette-per-categoria-card';
 import { Authentication } from '../../../../core/auth/services/authentication';
+import { Filter } from '../../../../shared/components/filters/filter/filter';
 
 @Component({
   selector: 'app-ricette-search',
-  imports: [RicetteCategoriaCard],
+  imports: [RicetteCategoriaCard, Filter],
   templateUrl: './ricette-search.html',
   styleUrl: './ricette-search.css',
 })
@@ -43,6 +44,12 @@ export class RicetteSearch implements OnInit {
       })
 
     });
+
+  }
+
+  onRecipeFilter(recipes: RecipeCardModel[]): void {
+    this.recipesList = recipes;
+    this.title = 'Ricette filtrate';
 
   }
 

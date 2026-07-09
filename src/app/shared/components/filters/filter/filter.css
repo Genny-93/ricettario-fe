@@ -1,0 +1,103 @@
+/* --- CONTENITORE PRINCIPALE DEI FILTRI --- */
+.filtri-panel {
+  display: flex;               /* Dispone le sezioni dei filtri in linea (orizzontali) */
+  flex-wrap: wrap;             /* Se lo schermo è piccolo, i filtri vanno a capo automaticamente */
+  align-items: center;         /* Allinea verticalmente al centro tutti gli elementi */
+  justify-content: flex-start; /* Allinea i filtri partendo da sinistra */
+  gap: 24px;                   /* Spazio fisso di separazione tra una sezione e l'altra */
+  padding: 16px 24px;          /* Spazio interno di sicurezza intorno al pannello */
+  background-color: var(--color-card); /* Colore di sfondo beige chiaro coerente con le card */
+  border-bottom: 1px solid var(--color-border); /* Linea sottile inferiore per separare la barra dal contenuto */
+  width: 100%;                 /* Prende tutta la larghezza disponibile */
+  box-sizing: border-box;      /* Include padding e bordo nel calcolo della larghezza */
+}
+
+/* --- SINGOLA SEZIONE DI UN FILTRO --- */
+.filtro-sezione {
+  display: flex;               /* Permette di gestire label ed elemento internamente */
+  flex-direction: column;      /* Posiziona la label sopra e l'input sotto */
+  justify-content: center;     /* Mantiene centrato il contenuto internamente */
+  gap: 6px;                    /* Piccolo spazio tra la descrizione (label) e il controllo */
+  min-width: 200px;            /* Larghezza minima per evitare che i componenti si schiaccino */
+}
+
+/* --- ETICHETTE DI TESTO (LABEL) --- */
+.filtro-sezione label {
+  font-size: 14px;             /* Dimensione del testo leggibile ma discreta */
+  font-weight: 600;            /* Testo leggermente in grassetto per risaltare */
+  color: var(--color-text-muted); /* Colore del testo grigio/marrone opaco della palette */
+}
+
+/* --- ADATTAMENTO COMPONENTI ANGULAR MATERIAL --- */
+/* Forza la larghezza del campo Select di Material */
+.filtro-sezione mat-form-field {
+  width: 100%;                 /* Occupa tutto lo spazio della sua sezione */
+}
+
+/* Allunga lo slider del tempo per renderlo più comodo da trascinare */
+.filtro-sezione mat-slider {
+  width: 100%;                 /* Occupa tutta la larghezza del suo contenitore */
+  max-width: 250px;            /* Evita che si allarghi all'infinito su schermi enormi */
+  margin-top: 8px;             /* Stacca lo slider dal toggle soprastante */
+}
+
+/* --- CONTENITORE AZIONI (PULSANTI) --- */
+.filtro-azioni {
+  display: flex;               /* Gestisce i due pulsanti in linea */
+  align-items: center;         /* Li allinea al centro */
+  gap: 16px;                   /* Spazio tra i due pulsanti */
+  margin-left: auto;           /* Spinge il blocco azioni tutto a destra */
+}
+
+/* --- PULSANTE APPLICA FILTRI --- */
+.filtri-panel .btn-applica {
+  height: 48px;                /* Altezza identica ai form field */
+  padding: 0 24px;             /* Spazio laterale interno */
+  background-color: var(--color-navbar); /* Verde scuro della palette per l'azione principale */
+  color: var(--color-text-inverse); /* Testo bianco */
+  border: none;                /* Nessun bordo */
+  border-radius: 4px;          /* Angoli arrotondati come il reset */
+  font-weight: bold;           /* Testo in grassetto */
+  cursor: pointer;             /* Cursore a manina */
+  transition: all 0.2s ease;   /* Animazione hover */
+}
+
+.filtri-panel .btn-applica:hover {
+  background-color: var(--color-footer); /* Verde ancora più scuro al passaggio del mouse */
+}
+
+/* --- PULSANTE DI RESET --- */
+.filtri-panel .btn-reset {
+  height: 48px;                /* Altezza identica ai form field */
+  padding: 0 20px;             /* Spazio interno laterale per il testo */
+  background-color: transparent; /* Sfondo trasparente per non appesantire la vista */
+  color: var(--color-primary);  /* Testo rosso primario della palette */
+  border: 1px solid var(--color-primary); /* Bordo sottile rosso primario */
+  border-radius: 4px;          /* Angoli leggermente arrotondati */
+  font-weight: bold;           /* Testo in grassetto */
+  cursor: pointer;             /* Mostra la manina quando ci si passa sopra */
+  transition: all 0.2s ease;   /* Animazione fluida per il passaggio del mouse */
+}
+
+/* Effetto al passaggio del mouse sul pulsante di reset */
+.filtri-panel .btn-reset:hover {
+  background-color: var(--color-primary); /* Lo sfondo diventa rosso primario */
+  color: var(--color-text-inverse);       /* Il testo diventa bianco */
+}
+
+/* --- STILE OPZIONI VALUTAZIONE (STELLE) --- */
+.opzione-valutazione {
+  display: flex;
+  align-items: center;
+  gap: 8px;                    /* Spazio tra il numero e la stella */
+}
+
+.opzione-valutazione mat-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+  color: var(--color-warning); /* Colore giallo della palette per le stelle */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

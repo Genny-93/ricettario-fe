@@ -83,6 +83,31 @@ export class Recipe {
     return this.http.post<boolean>(`${this.baseUrl}/add-favorite`, null, { params: params, withCredentials: true });
   }
 
+  getRecipesByFilters(username: string | null,
+                      category: string | null,
+                      minTempoDiCottura: number | null,
+                      maxTempoDiCottura: number | null,
+                      difficolta: string | null,
+                      valutazioneMedia: number | null,
+                      order: boolean ): Observable<RecipeCardModel[]>{
+
+    let params = new HttpParams();
+
+    if (username) { params = params.set('username', username); }
+    if (category) { params = params.set('category', category); }
+    if (minTempoDiCottura) { params = params.set('minTempoDiCottura', minTempoDiCottura); }
+    if (maxTempoDiCottura) { params = params.set('maxTempoDiCottura', maxTempoDiCottura); }
+    if (difficolta) { params = params.set('difficolta', difficolta); }
+    if (valutazioneMedia) { params = params.set('valutazioneMedia', valutazioneMedia);
+     }
+     params = params.set('order', order);
+     console.log(params);
+
+    return this.http.get<RecipeCardModel[]>(`${this.baseUrl}/search-recipes`, { params: params, withCredentials: true });
+             
+    
+  }
+
 
   findFavoriteRecipes(username: string): Observable<RecipeCardModel[]> {
     const params = new HttpParams().set('username', username);
@@ -96,5 +121,12 @@ export class Recipe {
       .set('idRicetta', idRicetta);
 
     return this.http.delete<boolean>(`${this.baseUrl}/delete-favorite`, { params: params, withCredentials: true });
+  }
+
+  deleteRecipe(nomeRicetta: string): Observable<Boolean> {
+    const params = new HttpParams()
+      .set('titolo', nomeRicetta);
+
+    return this.http.delete<boolean>(`${this.baseUrl}`, { params: params, withCredentials: true });
   }
 }
